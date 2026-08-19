@@ -1,12 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="192" height="256" viewBox="0 0 48 64">
-<rect width="48" height="64" fill="none"/>
-<!-- skates --> <path fill="#222629" d="M8 58h14v3H6v-2zm18 0h15v3H25v-2z"/><path stroke="#d7d7d7" stroke-width="1.5" d="M9 61h12M28 61h13"/>
-<!-- pants --> <path fill="#263544" d="M14 40h20l3 17-10 2-3-13-3 13-10-2z"/>
-<!-- hockey jersey --> <path fill="#e8e6df" d="M11 22h26l5 18H6z"/><path fill="#c93636" d="M11 22h7v18h-7zM30 22h7v18h-7zM18 34h12v6H18z"/>
-<!-- maple leaf --> <path fill="#c93636" d="M24 25l2 4 4-2-2 5 4 3-6 0-2 5-2-5-6 0 4-3-2-5 4 2z"/>
-<!-- arms --> <path fill="#b97952" d="M10 24L3 39l6 3 8-13zm28 0l7 15-6 3-8-13z"/>
-<!-- head --> <rect x="16" y="9" width="16" height="15" rx="3" fill="#b97952"/><path fill="#5b3c2c" d="M15 16h18v8H15z"/>
-<!-- toque --> <path fill="#c93636" d="M15 11V7l4-5h10l4 5v4z"/><rect x="16" y="10" width="17" height="4" fill="#f0f0ec"/><rect x="20" y="3" width="7" height="4" fill="#c93636"/>
-<!-- hockey stick --> <path stroke="#b07a42" stroke-width="2.2" d="M39 24L29 57"/><path fill="#8d6033" d="M28 55h10v3H27z"/>
-<!-- gloves --> <rect x="4" y="38" width="5" height="5" fill="#222629"/><rect x="39" y="38" width="5" height="5" fill="#222629"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 620"><defs><linearGradient id="b" y2="1"><stop stop-color="#cde8ff"/><stop offset="1" stop-color="#193b5e"/></linearGradient></defs><rect width="480" height="620" fill="url(#b)"/><path fill="#eef7ff" d="M0 390L95 240l80 95 100-135 90 150 115-120v260H0z"/><path fill="#2f5577" d="M0 420l95-100 80 65 100-120 90 100 115-85v340H0z" opacity=".65"/><path fill="#d92d3c" d="M30 55h420v150H30z"/><path fill="#f4f4f0" d="M135 55h210v150H135z"/><path fill="#d92d3c" d="M240 88l12 28 30 2-22 20 7 29-27-15-27 15 7-29-22-20 30-2z"/><g shape-rendering="crispEdges"><path fill="#f0f2f5" d="M170 250h140v180H170z"/><path fill="#c72d39" d="M155 250h170v75H155z"/><path fill="#f4f4f4" d="M190 270h100v40H190z"/><path fill="#d72f3d" d="M210 275h60v28h-60z"/><path fill="#b97855" d="M195 165h90v100h-90z"/><path fill="#b97855" d="M175 110h130v100H175z"/><path fill="#d51f32" d="M160 92h160v40H160z"/><path fill="#f0e9df" d="M205 70h70v35h-70z"/><path fill="#171a22" d="M195 145h18v12h-18zm72 0h18v12h-18z"/><path fill="#111821" d="M145 300h30v105h-30zm160 0h30v105h-30z"/><path fill="#c83b43" d="M150 400h75v150h-75zm105 0h75v150h-75z"/><path fill="#eef5ff" d="M150 525h75v35h-75zm105 0h75v35h-75z"/><path fill="#633b28" d="M330 270h115v12H330z"/><path fill="#d9e2e9" d="M430 264h15v28h-15z"/></g><text x="240" y="600" fill="#ff4d5a" font-family="monospace" font-size="25" font-weight="900" text-anchor="middle">CANADIAN</text></svg>

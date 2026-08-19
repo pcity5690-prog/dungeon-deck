@@ -1,12 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="216" height="288" viewBox="0 0 54 72">
-<rect width="54" height="72" fill="none"/>
-<!-- huge feet --> <path fill="#211817" d="M5 65h19v5H3v-3zm27 0h20v5H30v-3z"/>
-<!-- legs --> <path fill="#5f402d" d="M12 45h12l2 21H12zm18 0h12l1 21H30z"/>
-<!-- body --> <path fill="#765037" d="M10 20l8-10h18l9 10 5 26-10 8H14L4 46z"/><path fill="#8a6040" d="M17 20h20l5 27H13z"/>
-<!-- arms --> <path fill="#6b492f" d="M12 23L1 43l7 6 15-17zm30 0l11 20-7 6-15-17z"/>
-<!-- hands --> <path fill="#4d3427" d="M2 42l7 5-5 6-7-5zm44 0l7 5-4 6-7-5z"/>
-<!-- head --> <path fill="#6d492f" d="M16 7l8-7h11l9 8v18l-8 10H23l-9-10z"/><path fill="#8b6140" d="M21 9h15l5 8-5 10H19l-5-10z"/>
-<!-- face --> <rect x="20" y="14" width="5" height="4" fill="#b9d7a0"/><rect x="32" y="14" width="5" height="4" fill="#b9d7a0"/><path fill="#2b211c" d="M23 22h12l-3 6h-6z"/>
-<!-- fur --> <path stroke="#a16d48" stroke-width="2" d="M10 25L4 30M9 31L2 36M45 25l6 5M46 31l7 5M15 43l-5 7M39 43l5 7"/>
-<!-- fallen branch --> <path stroke="#6f4426" stroke-width="4" d="M40 48L51 67"/><path stroke="#9a6337" stroke-width="2" d="M42 52l6 0M45 57l7-2"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 620"><defs><linearGradient id="b" y2="1"><stop stop-color="#0d5b4b"/><stop offset="1" stop-color="#071711"/></linearGradient></defs><rect width="480" height="620" fill="url(#b)"/><circle cx="95" cy="90" r="65" fill="#79f09c" opacity=".16"/><path fill="#153d2d" d="M0 350l90-130 80 110 110-150 100 145 100-120v415H0z"/><g shape-rendering="crispEdges"><path fill="#5d402f" d="M130 170h220l55 265H75z"/><path fill="#754d36" d="M160 115h160v125H160z"/><path fill="#171713" d="M185 165h28v20h-28zm82 0h28v20h-28z"/><path fill="#53eaff" d="M190 168h20v12h-20zm80 0h20v12h-20z"/><path fill="#34241e" d="M195 205h90l-25 35h-40z"/><path fill="#7e583e" d="M95 245h70v150H95zm255 0h70v150h-70z"/><path fill="#3d2b22" d="M120 380h100v175H120zm140 0h100v175H260z"/><path fill="#2b1e18" d="M105 535h120v35H105zm150 0h120v35H255z"/><path fill="#6f4a30" d="M355 190h35v310h-35z"/><path fill="#987047" d="M340 175h65v35h-65z"/><path fill="#6a432c" d="M320 120h120v60H320z"/></g><text x="240" y="600" fill="#62ef7b" font-family="monospace" font-size="25" font-weight="900" text-anchor="middle">BIGFOOT</text></svg>
