@@ -16,3 +16,338 @@ body:after{content:"";position:fixed;inset:0;pointer-events:none;background:radi
 .pixelSprite{display:block;width:58px;height:58px;background-repeat:no-repeat;background-size:contain;background-position:center;image-rendering:auto;filter:drop-shadow(3px 4px 0 #02050a)}
 .sprite-warden{background-image:url('../assets/warden.svg')}.sprite-rogue{background-image:url('../assets/rogue.svg')}.sprite-arcanist{background-image:url('../assets/arcanist.svg')}.sprite-american{background-image:url('../assets/american.svg')}.sprite-canadian{background-image:url('../assets/canadian.svg')}.sprite-bigfoot{background-image:url('../assets/bigfoot.svg')}
 .miniSurvivor{--accent:#3da9ff}.miniSurvivor.american{--accent:#ffc846}.miniSurvivor.canadian{--accent:#ff4656}.miniSurvivor.bigfoot{--accent:#4fe26b}.miniSurvivor.rogue{--accent:#c04cff}.miniSurvivor.arcanist{--accent:#a34dff}.miniSurvivor.warden{--accent:#37a7ff}
+
+
+/* =========================================================
+   REFERENCE UI PASS
+   Visual-only styling: no game mechanics are changed.
+   Target: the supplied dark-blue fantasy / pixel-roguelike
+   survivor screen and its ornate frames.
+   ========================================================= */
+:root{
+  --ink:#050a15; --navy:#07142b; --deep:#091d3a; --steel:#1d4d82;
+  --ice:#62d8ff; --bright:#1aa6ff; --gold:#ffd34f; --gold2:#ff9d24;
+  --blood:#ff4b55; --violet:#c84cff; --forest:#45e86b;
+}
+html,body{background:#020713}
+body{
+  background:
+    radial-gradient(ellipse at 50% -10%,#123b83 0,#061a3c 30%,#020712 76%),
+    linear-gradient(#03142d,#020611);
+}
+body:before{opacity:.08}
+body:after{
+  background:
+    radial-gradient(ellipse at 50% 25%,transparent 0 43%,#000b 88%),
+    linear-gradient(180deg,transparent 0 72%,#02050caa);
+}
+
+/* ornate game frames */
+.panelFrame{
+  background:
+    linear-gradient(135deg,#183457 0,#0c1b31 17%,#080f1c 80%,#122a49 100%);
+  border:2px solid #2f83d2;
+  box-shadow:
+    0 0 0 3px #020713,
+    0 0 0 4px #16416e,
+    0 16px 38px #000d,
+    inset 0 1px #b8e7ff25;
+  clip-path:polygon(10px 0,calc(100% - 10px) 0,100% 10px,100% calc(100% - 10px),calc(100% - 10px) 100%,10px 100%,0 calc(100% - 10px),0 10px);
+}
+.panelFrame:before{
+  inset:5px;
+  border:1px solid #3b6b9a55;
+  clip-path:polygon(6px 0,calc(100% - 6px) 0,100% 6px,100% calc(100% - 6px),calc(100% - 6px) 100%,6px 100%,0 calc(100% - 6px),0 6px);
+}
+.panelFrame:after{height:3px;background:linear-gradient(90deg,transparent,#53c8ff,#9ce7ff,#53c8ff,transparent);opacity:.65}
+
+/* selection screen */
+.screenSelect{background:#020917;padding:15px 18px 20px}
+.selectBackdrop{
+  background:
+    radial-gradient(circle at 82% 15%,#f2387a55 0 3%,transparent 4% 12%,#163a78 12% 18%,transparent 19%),
+    radial-gradient(circle at 11% 25%,#ff7a1a55 0 2%,transparent 4%),
+    radial-gradient(ellipse at 50% 70%,#1453a955,transparent 47%),
+    linear-gradient(180deg,#041d4b 0,#061a3b 45%,#020814 100%);
+}
+.selectBackdrop:before{
+  background:
+    linear-gradient(180deg,transparent 0 45%,#030916cc 87%),
+    repeating-linear-gradient(145deg,#0d2a50 0 2px,transparent 2px 12px),
+    linear-gradient(90deg,#02091766,#1b56a122,#02091766);
+}
+.selectTopbar{max-width:1500px}
+.backBtn{
+  min-width:180px;height:62px;font-size:25px;font-family:'Press Start 2P',monospace;
+  background:linear-gradient(180deg,#123b70,#07172e);
+  border-color:#2f9cff;clip-path:polygon(10px 0,calc(100% - 10px) 0,100% 10px,100% calc(100% - 10px),calc(100% - 10px) 100%,10px 100%,0 calc(100% - 10px),0 10px);
+}
+.backBtn:before{content:"‹";color:#ff4250;margin-right:12px;font-size:36px;vertical-align:-4px}
+.selectBadge{
+  color:#69cfff;font-family:'Press Start 2P',monospace;
+  text-shadow:2px 2px #00132a;
+}
+.titleOrnament{
+  margin-top:5px;font-size:clamp(31px,4.3vw,68px);
+  color:#ffd94f;
+  text-shadow:5px 5px 0 #4b2700,0 0 22px #ff9f1c77;
+  letter-spacing:1px;
+}
+.titleOrnament:before,.titleOrnament:after{
+  content:"";display:inline-block;width:70px;height:4px;margin:0 22px 18px;
+  background:linear-gradient(90deg,transparent,#42caff,#ffd34f);
+  box-shadow:0 0 12px #2caeff;
+}
+.selectSubtitle{
+  color:#7de8ff;font-family:'Barlow Condensed',sans-serif;font-size:20px;
+  text-shadow:2px 2px #00111e;margin-bottom:28px;
+}
+.survivorGrid{gap:12px}
+.survivorCard{
+  min-height:0;
+  border-width:3px;
+  box-shadow:0 9px 0 #01040a,0 0 20px var(--glow),inset 0 0 0 1px #fff3;
+  clip-path:polygon(10px 0,calc(100% - 10px) 0,100% 10px,100% calc(100% - 10px),calc(100% - 10px) 100%,10px 100%,0 calc(100% - 10px),0 10px);
+}
+.survivorCard:after{
+  content:"";position:absolute;inset:7px;border:1px solid var(--accent);opacity:.25;pointer-events:none;
+}
+.survivorArt{
+  height:390px;
+  background:
+    radial-gradient(circle at 50% 20%,#1d78b844,transparent 30%),
+    linear-gradient(180deg,#0b2548,#07101f 80%);
+  position:relative;
+}
+.survivorArt:after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 55%,#02050aaa 100%);
+  pointer-events:none;
+}
+.survivorArt img{
+  image-rendering:auto;
+  filter:saturate(1.12) contrast(1.08) drop-shadow(0 12px 12px #000b);
+  transform:scale(1.025);
+}
+.survivorInfo{
+  position:relative;padding:12px 14px 13px;
+  background:linear-gradient(180deg,#071a31,#040a13);
+}
+.survivorInfo h2{
+  font-size:18px;margin:0 0 9px;
+  text-shadow:3px 3px #000,0 0 10px var(--glow);
+}
+.survivorInfo p{font-size:15px;min-height:47px;color:#ecf2fa}
+.relicStrip{padding:8px 0;border-top:2px solid var(--accent)}
+.relicStrip b{font-size:10px}
+.relicStrip span{font-size:16px;color:#fff}
+.relicStrip small{font-size:12px;color:#72e5ff}
+.cardCount{font-size:13px;margin-top:10px}
+.selectFooter{
+  color:#7f9bb8;border-top:1px solid #1d4e7c;padding-top:13px;
+}
+
+/* main HUD */
+#game{
+  max-width:1800px;padding:12px;
+  grid-template-columns:265px minmax(620px,1fr) 300px;
+  gap:12px;
+  background:
+    radial-gradient(ellipse at 50% 45%,#163968 0,#07152b 43%,#020610 82%);
+}
+.hud{
+  min-height:88px;padding:9px 12px;
+  background:linear-gradient(180deg,#12305a,#071326);
+}
+.hudStat{min-width:155px;border-right:1px solid #2a5784}
+.hudIcon{
+  width:45px;height:45px;clip-path:polygon(6px 0,calc(100% - 6px) 0,100% 6px,100% calc(100% - 6px),calc(100% - 6px) 100%,6px 100%,0 calc(100% - 6px),0 6px);
+}
+.hudStat b{font-size:13px}
+.hudMenu{gap:8px}
+.hudMenu button{border-color:#ffd34f;color:#ffe68b;background:linear-gradient(#594319,#1b1307);}
+
+/* side panels */
+.leftPanel,.rightPanel{
+  background:
+    linear-gradient(180deg,#102747,#071321 75%,#050a12);
+}
+.leftPanel h3,.rightPanel h3{
+  color:#dcecff;text-shadow:2px 2px #000;
+}
+.miniSurvivor{
+  border-width:3px;
+  box-shadow:0 0 18px var(--glow,#168cff55);
+}
+.miniSurvivor img{height:165px}
+.item{
+  background:linear-gradient(135deg,#102643,#060d18);
+  border:2px solid #24517f;
+}
+.item:hover{border-color:#62cfff;box-shadow:0 0 14px #229dff33}
+.sideBtn{
+  border-color:#3faaff;background:linear-gradient(#154a78,#07182b);
+}
+
+/* battle stage */
+.mainPanel{
+  background:
+    linear-gradient(180deg,#0e2340,#060d17 78%);
+}
+.roomHeader{
+  border-bottom:2px solid #24547f;padding-bottom:12px;
+}
+.roomHeader h1{
+  font-size:19px;color:#ffd967;text-shadow:3px 3px #251600;
+}
+.roomType{
+  color:#73dfff;border-color:#2e9fd4;background:#08233a;
+}
+.battleStage{
+  min-height:390px;
+  background:
+    radial-gradient(circle at 50% 35%,#355c91 0,#172d4d 30%,#091525 68%,#040914 100%);
+  border:2px solid #2c5e8c;
+  box-shadow:inset 0 0 70px #0008,0 10px 25px #0008;
+}
+.battleStage:before{
+  background:
+    radial-gradient(circle at 25% 20%,#4c94d522,transparent 15%),
+    radial-gradient(circle at 80% 30%,#9146c922,transparent 16%),
+    linear-gradient(180deg,#132d4d 0 28%,transparent 28%),
+    repeating-linear-gradient(0deg,#182537 0 3px,#0e1826 3px 7px);
+}
+.battleStage:after{
+  height:48%;
+  background:
+    linear-gradient(180deg,transparent,#030811),
+    repeating-linear-gradient(90deg,#1c2b3d 0 28px,#101b29 28px 31px);
+}
+.battleFloor{
+  height:6px;bottom:14%;
+  background:linear-gradient(90deg,transparent,#ffcf72,#fff1a6,#ffcf72,transparent);
+  box-shadow:0 0 25px #ffc75d88;
+}
+.enemyIcon .pixelSprite{
+  filter:drop-shadow(0 16px 10px #000d);
+  transform:scale(1.18);
+}
+.enemyName{font-size:18px;color:#fff;text-shadow:3px 3px #000}
+.enemyBox .hpbar{height:16px;border-color:#05080d;background:#05080d}
+.enemyBox .hpfill{background:linear-gradient(90deg,#9f1e2d,#ff5b62,#ff936c)}
+
+/* cards: larger ornate "collectible" look */
+.cards{gap:10px;min-height:185px}
+.card{
+  min-height:185px;
+  border-width:2px;
+  clip-path:polygon(7px 0,calc(100% - 7px) 0,100% 7px,100% calc(100% - 7px),calc(100% - 7px) 100%,7px 100%,0 calc(100% - 7px),0 7px);
+  box-shadow:3px 5px 0 #02050a,0 0 0 1px #7acbff22,inset 0 0 0 1px #fff2;
+}
+.card:after{
+  content:"";position:absolute;inset:5px;border:1px solid currentColor;opacity:.09;pointer-events:none;
+}
+.card .cost{
+  width:32px;height:32px;left:7px;top:7px;
+  border-color:#ffd35b;color:#ffe68b;
+  background:radial-gradient(circle,#305b87,#081522);
+}
+.card .name{font-size:17px;text-shadow:2px 2px #000}
+.card .desc{font-size:13px}
+.card.attack{border-color:#c14d59}
+.card.block{border-color:#4bb8e9}
+.card.skill{border-color:#b35aff}
+.card:hover:not(:disabled){
+  box-shadow:4px 10px 0 #02050a,0 0 25px currentColor;
+}
+
+/* resource strip */
+.combatResources{
+  background:linear-gradient(180deg,#0b1d33,#06101c);
+  border:1px solid #24517c;
+  padding:8px;
+  color:#7eafd0;
+}
+.combatResources span{padding:0 12px;border-right:1px solid #234667}
+.combatResources span:last-child{border-right:0}
+.combatControls button{
+  min-height:44px;
+  clip-path:polygon(7px 0,calc(100% - 7px) 0,100% 7px,100% calc(100% - 7px),calc(100% - 7px) 100%,7px 100%,0 calc(100% - 7px),0 7px);
+}
+.attackBtn{box-shadow:0 4px 0 #25070a,0 0 14px #ff394533!important}
+.tempBtn{box-shadow:0 4px 0 #021426,0 0 14px #1daaff33!important}
+
+/* map */
+.map{
+  padding:8px;
+  background:#040a12;
+  border:2px solid #214c77;
+  box-shadow:inset 0 0 25px #000;
+}
+.room{
+  height:36px;
+  background:linear-gradient(#11263f,#07111e);
+  border:2px solid #2a527b;
+  clip-path:polygon(4px 0,calc(100% - 4px) 0,100% 4px,100% calc(100% - 4px),calc(100% - 4px) 100%,4px 100%,0 calc(100% - 4px),0 4px);
+}
+.room.current{
+  background:linear-gradient(#604b18,#211707);
+  border-color:#ffd04b;
+  box-shadow:0 0 15px #ffc52e77;
+}
+.room.done{background:linear-gradient(#123b25,#07180e);border-color:#43d46b}
+.intentPanel{
+  border:2px solid #7f303b;
+  background:linear-gradient(180deg,#32141a,#0e0b10);
+}
+.intentPanel #intentBox{color:#ff747c;text-shadow:0 0 8px #ff3f4b77}
+
+/* explore map */
+.exploreWrap{
+  border:2px solid #24547f;
+  background:#030912;
+  box-shadow:inset 0 0 25px #000;
+}
+.exploreCell{
+  background:linear-gradient(135deg,#17314e,#081321);
+  border-color:#1e446b;
+}
+.exploreCell.wall{background:linear-gradient(135deg,#283a50,#111b28)}
+.exploreCell.player{background:#4d3b12;border-color:#ffd24b;box-shadow:0 0 12px #ffd24b55}
+.exploreCell.monster{background:#3a1118;border-color:#ff4d59;box-shadow:0 0 12px #ff4d5955}
+.exploreCell.chest{background:#3b2b0b;border-color:#ffcf45;box-shadow:0 0 12px #ffcf4555}
+
+/* modal / reward */
+.overlay{background:#01040bd9}
+.modal{
+  background:
+    linear-gradient(145deg,#16365d,#091526 75%,#07101c);
+  border-color:#43b8ff;
+  box-shadow:0 0 0 3px #061020,0 0 50px #1aa6ff44,0 25px 80px #000;
+}
+.modal h2{color:#ffd85a;text-shadow:3px 3px #3a2000}
+.modalButton,.choiceCard{
+  border-color:#347caf;
+  background:linear-gradient(155deg,#153456,#071322);
+}
+.modalButton:hover,.choiceCard:hover{
+  border-color:#ffd24c;box-shadow:0 0 18px #ffbf3c33;
+}
+
+/* responsive */
+@media(max-width:1250px){
+  #game{grid-template-columns:225px minmax(520px,1fr) 250px}
+  .cards{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:900px){
+  #game{grid-template-columns:1fr}
+  .leftPanel,.rightPanel{display:block}
+  .survivorGrid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:650px){
+  .survivorGrid{grid-template-columns:repeat(2,1fr)}
+  .survivorArt{height:260px}
+  .titleOrnament:before,.titleOrnament:after{display:none}
+  .hud{flex-wrap:wrap}.hudMenu{width:100%;margin-left:0}
+  .cards{grid-template-columns:repeat(2,1fr)}
+}
