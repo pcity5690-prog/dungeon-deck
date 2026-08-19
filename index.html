@@ -155,9 +155,9 @@ const formerStarterCards=[
 ];
 
 const temporaryEnergyCards=[
- {name:"Adrenal Surge",type:"skill",cost:1,desc:"Gain +2 temporary Energy this fight.",rarity:"Rare",effect:()=>{state.energy+=2;state.tempEnergy+=2}},
- {name:"Second Wind",type:"skill",cost:0,desc:"Gain +1 temporary Energy this fight.",rarity:"Uncommon",effect:()=>{state.energy+=1;state.tempEnergy+=1}},
- {name:"Overcharge",type:"skill",cost:2,desc:"Gain +4 temporary Energy this fight.",rarity:"Epic",effect:()=>{state.energy+=4;state.tempEnergy+=4}}
+ {name:"Adrenal Surge",type:"skill",cost:1,desc:"Gain +2 temporary Energy this turn.",rarity:"Rare",effect:()=>{state.tempEnergy+=2}},
+ {name:"Second Wind",type:"skill",cost:0,desc:"Gain +1 temporary Energy this turn.",rarity:"Uncommon",effect:()=>{state.tempEnergy+=1}},
+ {name:"Overcharge",type:"skill",cost:2,desc:"Gain +4 temporary Energy this turn.",rarity:"Epic",effect:()=>{state.tempEnergy+=4}}
 ];
 
 const collectibleCards=[
@@ -187,7 +187,7 @@ const extraCards=[
  {name:"Quick Guard",type:"block",cost:1,desc:"Gain 8 Block and draw 1.",rarity:"Common",effect:()=>{block(8);drawCard()}},
  {name:"Jab",type:"attack",cost:0,desc:"Deal 3 damage.",rarity:"Common",effect:()=>damage(3)},
  {name:"Cleave",type:"attack",cost:1,desc:"Deal 10 damage.",rarity:"Common",effect:()=>damage(10)},
- {name:"Battle Rhythm",type:"skill",cost:1,desc:"Gain 2 Block and 1 temporary Energy.",rarity:"Common",effect:()=>{block(2);state.energy++;state.tempEnergy++}},
+ {name:"Battle Rhythm",type:"skill",cost:1,desc:"Gain 2 Block and 1 temporary Energy.",rarity:"Common",effect:()=>{block(2);state.tempEnergy++}},
  {name:"Brace Up",type:"block",cost:1,desc:"Gain 7 Block.",rarity:"Common",effect:()=>block(7)},
  {name:"Counter",type:"skill",cost:1,desc:"Gain 6 Block.",rarity:"Common",effect:()=>block(6)},
  {name:"Rally",type:"skill",cost:1,desc:"Draw 2 cards.",rarity:"Common",effect:()=>{drawCard();drawCard()}},
@@ -198,7 +198,7 @@ const extraCards=[
  {name:"War Cry",type:"skill",cost:2,desc:"Draw 3 cards.",rarity:"Uncommon",effect:()=>{drawCard();drawCard();drawCard()}},
  {name:"Reckless Swing",type:"attack",cost:1,desc:"Deal 15 damage.",rarity:"Uncommon",effect:()=>damage(15)},
  {name:"Stone Skin",type:"block",cost:2,desc:"Gain 20 Block.",rarity:"Uncommon",effect:()=>block(20)},
- {name:"Momentum",type:"skill",cost:1,desc:"Gain 2 temporary Energy.",rarity:"Uncommon",effect:()=>{state.energy+=2;state.tempEnergy+=2}},
+ {name:"Momentum",type:"skill",cost:1,desc:"Gain 2 temporary Energy.",rarity:"Uncommon",effect:()=>{state.tempEnergy+=2}},
  {name:"Riposte",type:"attack",cost:2,desc:"Deal 11 damage and gain 6 Block.",rarity:"Uncommon",effect:()=>{damage(11);if(state.combat)block(6)}},
  {name:"Recovery",type:"skill",cost:1,desc:"Gain 10 Block and draw 1.",rarity:"Uncommon",effect:()=>{block(10);drawCard()}},
  {name:"Inferno",type:"attack",cost:2,desc:"Deal 25 damage.",rarity:"Rare",effect:()=>damage(25)},
@@ -213,12 +213,12 @@ const extraCards=[
  {name:"Meteoric Slash",type:"attack",cost:3,desc:"Deal 38 damage.",rarity:"Epic",effect:()=>damage(38)},
  {name:"Colossus Guard",type:"block",cost:3,desc:"Gain 50 Block.",rarity:"Epic",effect:()=>block(50)},
  {name:"Overwhelming Force",type:"attack",cost:2,desc:"Deal 35 damage.",rarity:"Epic",effect:()=>damage(35)},
- {name:"War Machine",type:"skill",cost:2,desc:"Gain 3 Energy and draw 1.",rarity:"Epic",effect:()=>{state.energy+=4;state.tempEnergy+=4;drawCard()}},
+ {name:"War Machine",type:"skill",cost:2,desc:"Gain 3 Energy and draw 1.",rarity:"Epic",effect:()=>{state.energy+=3;drawCard()}},
  {name:"Void Lance",type:"attack",cost:2,desc:"Deal 42 damage.",rarity:"Epic",effect:()=>damage(42)},
  {name:"Guardian Angel",type:"skill",cost:2,desc:"Gain 32 Block and draw 2.",rarity:"Epic",effect:()=>{block(32);drawCard();drawCard()}},
  {name:"Cataclysm",type:"attack",cost:3,desc:"Deal 55 damage.",rarity:"Legendary",effect:()=>damage(55)},
  {name:"Immortal Aegis",type:"block",cost:3,desc:"Gain 65 Block.",rarity:"Legendary",effect:()=>block(65)},
- {name:"Chrono Blade",type:"skill",cost:1,desc:"Gain 3 Energy and draw 3 cards.",rarity:"Legendary",effect:()=>{state.energy+=4;state.tempEnergy+=4;drawCard();drawCard();drawCard()}},
+ {name:"Chrono Blade",type:"skill",cost:1,desc:"Gain 3 Energy and draw 3 cards.",rarity:"Legendary",effect:()=>{state.energy+=3;drawCard();drawCard();drawCard()}},
  {name:"Starfall",type:"attack",cost:3,desc:"Deal 70 damage.",rarity:"Legendary",effect:()=>damage(70)},
  {name:"World Breaker",type:"attack",cost:4,desc:"Deal 90 damage.",rarity:"Legendary",effect:()=>damage(90)}
 ];
@@ -231,7 +231,7 @@ const classCards={
   {name:"Heavy Guard",type:"block",cost:2,desc:"Gain 18 Block.",rarity:"Common",effect:()=>block(18)},
   {name:"Shield Bash",type:"attack",cost:2,desc:"Deal 7 damage plus half your Block (rounded down).",rarity:"Common",effect:()=>damage(7+Math.floor(state.block/2))},
   {name:"Hold the Line",type:"skill",cost:1,desc:"Gain 6 Block and draw 1.",rarity:"Common",effect:()=>{block(6);drawCard()}},
-  {name:"Fortified Stance",type:"block",cost:1,desc:"Gain 8 Block and 1 temporary Energy.",rarity:"Common",effect:()=>{block(8);state.energy++;state.tempEnergy++}},
+  {name:"Fortified Stance",type:"block",cost:1,desc:"Gain 8 Block and 1 temporary Energy.",rarity:"Common",effect:()=>{block(8);state.tempEnergy++}},
   {name:"Hammer Tap",type:"attack",cost:1,desc:"Deal 10 damage.",rarity:"Common",effect:()=>damage(10)},
   {name:"Guard Breaker",type:"attack",cost:2,desc:"Deal 17 damage.",rarity:"Uncommon",effect:()=>damage(17)},
   {name:"Iron Fortress",type:"block",cost:2,desc:"Gain 23 Block.",rarity:"Uncommon",effect:()=>block(23)},
@@ -245,7 +245,7 @@ const classCards={
   {name:"Last Stand",type:"skill",cost:1,desc:"Gain 18 Block and draw 2.",rarity:"Rare",effect:()=>{block(18);drawCard();drawCard()}},
   {name:"Crushing Shield",type:"attack",cost:2,desc:"Deal 20 damage and gain 10 Block.",rarity:"Epic",effect:()=>{damage(20);if(state.combat)block(10)}},
   {name:"Colossus",type:"block",cost:3,desc:"Gain 45 Block.",rarity:"Epic",effect:()=>block(45)},
-  {name:"Unbreakable",type:"skill",cost:3,desc:"Gain 28 Block, draw 2, and gain 2 temporary Energy.",rarity:"Legendary",effect:()=>{block(28);drawCard();drawCard();state.energy+=2;state.tempEnergy+=2}}
+  {name:"Unbreakable",type:"skill",cost:3,desc:"Gain 28 Block, draw 2, and gain 2 temporary Energy.",rarity:"Legendary",effect:()=>{block(28);drawCard();drawCard();state.tempEnergy+=2}}
  ],
  rogue:[
   {name:"Backstab",type:"attack",cost:0,desc:"Deal 5 damage.",rarity:"Common",effect:()=>damage(5)},
@@ -262,7 +262,7 @@ const classCards={
   {name:"Ambush",type:"attack",cost:2,desc:"Deal 26 damage.",rarity:"Uncommon",effect:()=>damage(26)},
   {name:"Shadow Dance",type:"skill",cost:1,desc:"Draw 3 cards.",rarity:"Rare",effect:()=>{drawCard();drawCard();drawCard()}},
   {name:"Deadly Precision",type:"attack",cost:1,desc:"Deal 20 damage.",rarity:"Rare",effect:()=>damage(20)},
-  {name:"Ghost Step",type:"skill",cost:1,desc:"Gain 14 Block and 1 temporary Energy.",rarity:"Rare",effect:()=>{block(14);state.energy++;state.tempEnergy++}},
+  {name:"Ghost Step",type:"skill",cost:1,desc:"Gain 14 Block and 1 temporary Energy.",rarity:"Rare",effect:()=>{block(14);state.tempEnergy++}},
   {name:"Fan of Blades",type:"attack",cost:2,desc:"Deal 10 damage three times.",rarity:"Rare",effect:()=>{damage(10);if(state.combat)damage(10);if(state.combat)damage(10)}},
   {name:"Executioner's Knife",type:"attack",cost:2,desc:"Deal 36 damage.",rarity:"Epic",effect:()=>damage(36)},
   {name:"Phantom Barrage",type:"attack",cost:2,desc:"Deal 15 damage three times.",rarity:"Epic",effect:()=>{damage(15);if(state.combat)damage(15);if(state.combat)damage(15)}},
@@ -279,7 +279,7 @@ const classCards={
   {name:"Arcane Insight",type:"skill",cost:1,desc:"Draw 2 cards.",rarity:"Common",effect:()=>{drawCard();drawCard()}},
   {name:"Fireball",type:"attack",cost:2,desc:"Deal 22 damage.",rarity:"Uncommon",effect:()=>damage(22)},
   {name:"Ice Barrier",type:"block",cost:2,desc:"Gain 22 Block.",rarity:"Uncommon",effect:()=>block(22)},
-  {name:"Mana Surge",type:"skill",cost:1,desc:"Gain 2 temporary Energy.",rarity:"Uncommon",effect:()=>{state.energy+=2;state.tempEnergy+=2}},
+  {name:"Mana Surge",type:"skill",cost:1,desc:"Gain 2 temporary Energy.",rarity:"Uncommon",effect:()=>{state.tempEnergy+=2}},
   {name:"Lightning Arc",type:"attack",cost:1,desc:"Deal 8 damage twice.",rarity:"Uncommon",effect:()=>{damage(8);if(state.combat)damage(8)}},
   {name:"Rune Ward",type:"block",cost:1,desc:"Gain 14 Block and draw 1.",rarity:"Uncommon",effect:()=>{block(14);drawCard()}},
   {name:"Spell Echo",type:"skill",cost:2,desc:"Draw 3 cards and gain 1 Energy.",rarity:"Uncommon",effect:()=>{drawCard();drawCard();drawCard();state.energy=Math.min(state.maxEnergy,state.energy+1)}},
@@ -288,7 +288,7 @@ const classCards={
   {name:"Mana Well",type:"skill",cost:1,desc:"Gain 1 Energy.",rarity:"Rare",effect:()=>{state.energy=Math.min(state.maxEnergy,state.energy+1)}},
   {name:"Chain Lightning",type:"attack",cost:2,desc:"Deal 16 damage twice.",rarity:"Rare",effect:()=>{damage(16);if(state.combat)damage(16)}},
   {name:"Meteor Storm",type:"attack",cost:3,desc:"Deal 48 damage.",rarity:"Epic",effect:()=>damage(48)},
-  {name:"Time Weaver",type:"skill",cost:2,desc:"Gain 2 temporary Energy and draw 2.",rarity:"Epic",effect:()=>{state.energy+=2;state.tempEnergy+=2;drawCard();drawCard()}},
+  {name:"Time Weaver",type:"skill",cost:2,desc:"Gain 2 temporary Energy and draw 2.",rarity:"Epic",effect:()=>{state.tempEnergy+=2;drawCard();drawCard()}},
   {name:"Arcane Apocalypse",type:"attack",cost:3,desc:"Deal 75 damage.",rarity:"Legendary",effect:()=>damage(75)}
  ]
 };
@@ -369,7 +369,7 @@ function relicText(r){
 function grantRelic(relic){
  if(!relic)return;
  state.relics.push(relic);
- if(relic.effect==="maxhp5"){state.maxHp+=5;state.hp+=5}
+ if(relic.effect==="maxhp5"||relic.effect==="luckyStone"){state.maxHp+=5;state.hp+=5}
  if(relic.effect==="maxhp25"){state.maxHp+=25;state.hp+=25}
  if(relic.effect==="dragon"){state.maxHp+=12;state.hp+=12}
  if(relic.effect==="crown"){state.maxHp+=20;state.hp+=20;state.maxEnergy+=2}
@@ -380,7 +380,15 @@ function grantRelic(relic){
 function showRelicChest(){
  const relic=randomRelic();
  if(!relic){resumeExploration();return}
- modal("💎 Relic Chest",`You found a ${relic.rarity} relic: ${relic.name}.`,[
+ const rarity=rarityColor(relic.rarity);
+ modal("💎 Relic Chest",`
+  <div style="text-align:center;padding:8px 4px 4px">
+   <div style="font-size:34px;margin-bottom:8px">💎</div>
+   <div style="font-size:22px;font-weight:1000;color:${rarity};margin-bottom:4px">${relic.name}</div>
+   <div style="font-size:13px;font-weight:900;color:${rarity};text-transform:uppercase;letter-spacing:1px;margin-bottom:14px">${relic.rarity} Relic</div>
+   <div style="background:#080b0d;border:1px solid #59636b;padding:14px;color:#e8edf0;line-height:1.5;font-size:15px">${relic.desc}</div>
+  </div>
+ `,[
   ["Take Relic",()=>{grantRelic(relic);closeModal();resumeExploration();}]
  ]);
 }
@@ -419,8 +427,8 @@ function newState(classKey="warden"){
  return {
   floor:1,gold:20,level:1,hp:70,maxHp:70,xp:0,nextXp:20,
   block:0,energy:3,maxEnergy:3,tempEnergy:0,rooms:[],room:0,
-  deck:[...baseCards,...baseCards],draw:[],hand:[],discard:[],
-  enemy:null,combat:false,exploring:false,gameover:false,playerTurn:true,classKey,className:classInfo.name,relics:[],explore:null,shop:null
+  deck:[...baseCards,...baseCards].map(cardCopy),draw:[],hand:[],discard:[],
+  enemy:null,combat:false,exploring:false,gameover:false,playerTurn:true,phoenixUsed:false,classKey,className:classInfo.name,relics:[],explore:null,shop:null
  };
 }
 
@@ -564,8 +572,8 @@ function movePlayer(dx,dy){
   if(hasRelic("startblock12"))state.block+=12;
   if(hasRelic("dragon"))state.block+=6;
   if(hasRelic("turnblock3"))state.block+=3;
-  if(hasRelic("battle standard")||hasRelic("Battle Standard")){state.energy+=2;state.tempEnergy+=2}
-  if(hasRelic("worldstone")){state.energy+=2;state.tempEnergy+=2}
+  if(hasRelic("tempenergy2")){state.tempEnergy+=2}
+  if(hasRelic("worldstone")){state.tempEnergy+=2}
   render();
   log(`You encountered ${state.enemy.name}! ${ex.monsters.length} monster${ex.monsters.length===1?"":"s"} remain. You cannot progress until every enemy in this room is defeated.`);
   return;
@@ -612,22 +620,33 @@ function drawCards(n){
  for(let i=0;i<n;i++)drawCard();
 }
 
+function availableEnergy(){
+ return state.energy + state.tempEnergy;
+}
+
 function canPlay(card){
- return state.combat && state.playerTurn && state.energy>=card.cost;
+ return state.combat && state.playerTurn && availableEnergy()>=card.cost;
+}
+
+function spendEnergy(amount){
+ const fromTemp=Math.min(state.tempEnergy,amount);
+ state.tempEnergy-=fromTemp;
+ state.energy-=amount-fromTemp;
 }
 
 function useCard(index){
  const card=state.hand[index];
  if(!canPlay(card))return;
 
- state.energy-=card.cost;
+ spendEnergy(card.cost);
  state.hand.splice(index,1);
  card.effect();
+ if(card.type==="block" && hasRelic("blockcard1") && state.combat)state.block+=1;
  state.discard.push(card);
 
  if(!state.combat)return;
 
- if(state.energy===0 || !state.hand.some(c=>c.cost<=state.energy)){
+ if(availableEnergy()===0 || !state.hand.some(c=>c.cost<=availableEnergy())){
   endPlayerTurn();
  }else{
   render();
@@ -679,8 +698,14 @@ function enemyAction(){
  log(`${e.name} attacks for ${e.atk}. You take ${taken}.`);
 
  if(state.hp<=0){
-  gameOver();
-  return;
+  if(hasRelic("phoenix") && !state.phoenixUsed){
+   state.hp=1;
+   state.phoenixUsed=true;
+   log("Phoenix Feather saves you at 1 HP!");
+  }else{
+   gameOver();
+   return;
+  }
  }
 
  e.atk=Math.max(2,e.atk+(Math.random()<0.3?1:0));
@@ -698,7 +723,6 @@ function damage(amount){
 
 function block(amount){
  state.block+=amount;
- if(hasRelic('blockcard1')&&state.combat)state.block+=1;
  log(`You gain ${amount} block.`);
 }
 
@@ -816,12 +840,19 @@ function gainXP(amount){
  }
 }
 
+const luckyStoneRelic={
+ name:"Lucky Stone",
+ rarity:"Uncommon",
+ desc:"+5 Max HP.",
+ effect:"luckyStone"
+};
+
 function treasureRoom(){
  modal("Treasure Room","You found a treasure chest.",[
-  ["Lucky Stone",()=>{
-   state.maxHp+=5;state.hp+=5;state.relics.push("Lucky Stone");
+  [`💎 ${luckyStoneRelic.name} — ${luckyStoneRelic.rarity}`,()=>{
+   grantRelic({...luckyStoneRelic});
    closeModal();nextRoom();
-  }],
+  },`Relic effect: ${luckyStoneRelic.desc}`],
   ["15 Gold",()=>{
    state.gold+=15;
    closeModal();nextRoom();
