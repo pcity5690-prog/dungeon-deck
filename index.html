@@ -294,6 +294,39 @@ const classCards={
 };
 
 let state;
+let turnTimer=null;
+let turnTransitionActive=false;
+let lastGameError=null;
+
+function recordGameError(error, context="unknown") {
+ lastGameError={time:new Date().toISOString(),context,message:error?.message||String(error),stack:error?.stack||""};
+ console.error("Dungeon Deck recovered from an error:", lastGameError);
+ const logEl=document.getElementById("log");
+ if(logEl){
+  logEl.innerHTML += `<div style="color:#f6c453">⚠ Game recovered after an error during ${context}. You can continue playing.</div>`;
+  logEl.scrollTop=logEl.scrollHeight;
+ }
+}
+
+function recoverGameState(context,error){
+ recordGameError(error,context);
+ turnTransitionActive=false;
+ if(turnTimer){clearTimeout(turnTimer);turnTimer=null;}
+ if(state && !state.gameover){
+  if(state.combat && state.enemy){
+   state.playerTurn=true;
+   if(state.energy==null)state.energy=state.maxEnergy;
+  }
+  try{render();}catch(renderError){console.error("Render recovery failed:",renderError);}
+ }
+}
+
+window.addEventListener("error",e=>{
+ if(e?.error){recoverGameState("browser error",e.error);}
+});
+window.addEventListener("unhandledrejection",e=>{
+ recoverGameState("promise rejection",e?.reason||new Error("Unhandled promise rejection"));
+});
 
 const relicPool=[
  // Common (60% of chest rolls)
@@ -448,6 +481,9 @@ function selectClass(classKey){
 }
 
 function restart(classKey=state?.classKey||"warden"){
+ if(turnTimer){clearTimeout(turnTimer);turnTimer=null;}
+ turnTransitionActive=false;
+ lastGameError=null;
  state=newState(classKey);
  const classRelic={warden:"Knight's Crest",rogue:"Wolf Fang",arcanist:"Mana Crystal"}[classKey]||"Knight's Crest";
  const relic=relicPool.find(r=>r.name===classRelic);
@@ -664,27 +700,34 @@ function basicAttack(){
 }
 
 function endPlayerTurn(){
- if(!state.combat || state.gameover)return;
+ if(!state.combat || state.gameover || turnTransitionActive)return;
 
+ turnTransitionActive=true;
  state.playerTurn=false;
- render();
+ try{render();}catch(error){recoverGameState("turn transition render",error);return;}
 
- setTimeout(()=>{
-  if(!state.combat || state.gameover)return;
+ turnTimer=setTimeout(()=>{
+  turnTimer=null;
+  try{
+   if(!state.combat || state.gameover){turnTransitionActive=false;return;}
 
-  enemyAction();
+   enemyAction();
 
-  if(state.combat && !state.gameover){
-   state.energy=state.maxEnergy;
-   state.tempEnergy=0;
-   state.block=0;
-   state.hand.forEach(c=>state.discard.push(c));
-   state.hand=[];
-   drawCards(5);
-   state.playerTurn=true;
+   if(state.combat && !state.gameover){
+    state.energy=state.maxEnergy;
+    state.tempEnergy=0;
+    state.block=0;
+    state.hand.forEach(c=>state.discard.push(c));
+    state.hand=[];
+    drawCards(5);
+    state.playerTurn=true;
+   }
+
+   turnTransitionActive=false;
+   render();
+  }catch(error){
+   recoverGameState("enemy turn",error);
   }
-
-  render();
  },250);
 }
 
