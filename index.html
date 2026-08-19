@@ -13,7 +13,7 @@ button{cursor:pointer;border:2px solid #565a56;background:linear-gradient(#30343
 #game{max-width:1250px;margin:auto;padding:14px;display:grid;grid-template-columns:230px 1fr 240px;gap:12px}
 .panel{background:linear-gradient(145deg,#202324,#121414);border:2px solid #4a4d4a;border-radius:2px;padding:14px;box-shadow:0 7px 0 #050606,0 15px 35px #000b;position:relative}.panel:after{content:"";position:absolute;inset:4px;border:1px solid #292c2b;pointer-events:none}
 .title{font-size:27px;font-weight:1000;letter-spacing:3px;text-align:center;margin:4px 0 16px;color:#e8e5d5;text-shadow:3px 3px #070808}.stat{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #343736}.hpbar{height:13px;background:#251111;border:2px solid #0b0c0c;overflow:hidden;margin:7px 0 14px}.hpfill{height:100%;background:linear-gradient(#df675d,#9f2f2b);box-shadow:inset 0 1px #ffaaa2}.xpbar{height:10px;background:#121b23;border:2px solid #0b0c0c;overflow:hidden}.xpfill{height:100%;background:linear-gradient(#78bce7,#397aa6)}
-.map{display:grid;grid-template-columns:repeat(13,minmax(0,1fr));gap:4px;margin-top:12px;overflow:hidden}.room{height:45px;border:2px solid #363a38;background:#171a19;display:flex;align-items:center;justify-content:center;font-size:18px;image-rendering:pixelated}.room.current{border-color:#d7b35a;background:#2a261a}.room.done{background:#17251b}.room.locked{opacity:.78;border-style:dashed}.room.future{box-shadow:inset 0 0 0 1px #3a3d3b}.pathArrow{color:#777c77;font-weight:900;font-size:12px;display:flex;align-items:center;justify-content:center}.shopBadge{color:#d7b35a;font-size:11px;margin-left:5px} .shopGold{display:inline-block;margin:8px 0;padding:8px 14px;border:1px solid #8d7438;border-radius:6px;background:#292315;color:#ffd34d;font-weight:900}.shopHoverItem{cursor:help}.choiceCardButton{position:relative}.choiceCardButton:hover::after{content:attr(data-tooltip);position:absolute;left:50%;bottom:calc(100% + 10px);transform:translateX(-50%);width:240px;z-index:30;padding:10px 12px;background:#0b0d0d;color:#f1f0e8;border:1px solid #d7b35a;border-radius:4px;box-shadow:0 6px 18px #000;white-space:normal;text-align:left;font-size:13px;line-height:1.35;text-transform:none;letter-spacing:0;font-weight:700;pointer-events:none}.choiceCardButton:hover::before{content:"";position:absolute;left:50%;bottom:calc(100% + 4px);transform:translateX(-50%);border:6px solid transparent;border-top-color:#d7b35a;z-index:31;pointer-events:none}
+.map{display:grid;grid-template-columns:repeat(13,minmax(0,1fr));gap:4px;margin-top:12px;overflow:hidden}.room{height:45px;border:2px solid #363a38;background:#171a19;display:flex;align-items:center;justify-content:center;font-size:18px;image-rendering:pixelated}.room.current{border-color:#d7b35a;background:#2a261a}.room.done{background:#17251b}.room.locked{opacity:.78;border-style:dashed}.room.future{box-shadow:inset 0 0 0 1px #3a3d3b}.pathArrow{color:#777c77;font-weight:900;font-size:12px;display:flex;align-items:center;justify-content:center}.shopBadge{color:#d7b35a;font-size:11px;margin-left:5px} .shopGold{display:inline-block;margin:8px 0;padding:8px 14px;border:1px solid #8d7438;border-radius:6px;background:#292315;color:#ffd34d;font-weight:900}.shopHoverItem{cursor:help}
 .header{display:flex;justify-content:space-between;align-items:center}.enemy{display:flex;gap:18px;align-items:center;background:linear-gradient(145deg,#202323,#111313);border:2px solid #4a4d4a;padding:14px;margin:12px 0;box-shadow:inset 0 0 0 1px #282b29,0 3px 0 #080909}.enemyIcon{width:88px;height:88px;display:flex;align-items:center;justify-content:center;image-rendering:pixelated}.enemyName{font-size:23px;font-weight:900;color:#eee;text-shadow:2px 2px #080909}
 .cards{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin:18px 0}.card{width:105px;min-height:140px;background:linear-gradient(#343737,#202323);color:#e9e8df;border:2px solid #666a66;border-radius:2px;padding:10px;position:relative;text-align:left;box-shadow:3px 4px 0 #080909, inset 0 1px #777}.card .cost{position:absolute;right:6px;top:5px;background:#315c78;color:#fff;border:2px solid #7196ae;border-radius:2px;width:27px;height:27px;text-align:center;padding-top:2px;font-weight:900}.card .name{font-weight:1000;margin-top:22px}.card .desc{font-size:12px;margin-top:10px;color:#c9c9c1}.card.attack{background:linear-gradient(#49302d,#28201f);border-color:#8b514b}.card.block{background:linear-gradient(#2e4147,#202c30);border-color:#557b87}.card.skill{background:linear-gradient(#3c3349,#28232f);border-color:#76618e}.card:hover{transform:translateY(-5px)}
 .controls{text-align:center}.controls button{margin:4px}.attackBtn{background:linear-gradient(#79352f,#4d201d);border-color:#a95a52;min-width:130px}.log{height:120px;overflow:auto;background:#0a0b0b;border:2px solid #363938;padding:9px;font-size:13px;color:#aaaFA9}
@@ -155,9 +155,9 @@ const formerStarterCards=[
 ];
 
 const temporaryEnergyCards=[
- {name:"Adrenal Surge",type:"skill",cost:1,desc:"Gain +2 temporary Energy this turn.",rarity:"Rare",effect:()=>{state.tempEnergy+=2}},
- {name:"Second Wind",type:"skill",cost:0,desc:"Gain +1 temporary Energy this turn.",rarity:"Uncommon",effect:()=>{state.tempEnergy+=1}},
- {name:"Overcharge",type:"skill",cost:2,desc:"Gain +4 temporary Energy this turn.",rarity:"Epic",effect:()=>{state.tempEnergy+=4}}
+ {name:"Adrenal Surge",type:"skill",cost:1,desc:"Gain +2 temporary Energy this fight.",rarity:"Rare",effect:()=>{state.energy+=2;state.tempEnergy+=2}},
+ {name:"Second Wind",type:"skill",cost:0,desc:"Gain +1 temporary Energy this fight.",rarity:"Uncommon",effect:()=>{state.energy+=1;state.tempEnergy+=1}},
+ {name:"Overcharge",type:"skill",cost:2,desc:"Gain +4 temporary Energy this fight.",rarity:"Epic",effect:()=>{state.energy+=4;state.tempEnergy+=4}}
 ];
 
 const collectibleCards=[
@@ -187,7 +187,7 @@ const extraCards=[
  {name:"Quick Guard",type:"block",cost:1,desc:"Gain 8 Block and draw 1.",rarity:"Common",effect:()=>{block(8);drawCard()}},
  {name:"Jab",type:"attack",cost:0,desc:"Deal 3 damage.",rarity:"Common",effect:()=>damage(3)},
  {name:"Cleave",type:"attack",cost:1,desc:"Deal 10 damage.",rarity:"Common",effect:()=>damage(10)},
- {name:"Battle Rhythm",type:"skill",cost:1,desc:"Gain 2 Block and 1 temporary Energy.",rarity:"Common",effect:()=>{block(2);state.tempEnergy++}},
+ {name:"Battle Rhythm",type:"skill",cost:1,desc:"Gain 2 Block and 1 temporary Energy.",rarity:"Common",effect:()=>{block(2);state.energy++;state.tempEnergy++}},
  {name:"Brace Up",type:"block",cost:1,desc:"Gain 7 Block.",rarity:"Common",effect:()=>block(7)},
  {name:"Counter",type:"skill",cost:1,desc:"Gain 6 Block.",rarity:"Common",effect:()=>block(6)},
  {name:"Rally",type:"skill",cost:1,desc:"Draw 2 cards.",rarity:"Common",effect:()=>{drawCard();drawCard()}},
@@ -198,7 +198,7 @@ const extraCards=[
  {name:"War Cry",type:"skill",cost:2,desc:"Draw 3 cards.",rarity:"Uncommon",effect:()=>{drawCard();drawCard();drawCard()}},
  {name:"Reckless Swing",type:"attack",cost:1,desc:"Deal 15 damage.",rarity:"Uncommon",effect:()=>damage(15)},
  {name:"Stone Skin",type:"block",cost:2,desc:"Gain 20 Block.",rarity:"Uncommon",effect:()=>block(20)},
- {name:"Momentum",type:"skill",cost:1,desc:"Gain 2 temporary Energy.",rarity:"Uncommon",effect:()=>{state.tempEnergy+=2}},
+ {name:"Momentum",type:"skill",cost:1,desc:"Gain 2 temporary Energy.",rarity:"Uncommon",effect:()=>{state.energy+=2;state.tempEnergy+=2}},
  {name:"Riposte",type:"attack",cost:2,desc:"Deal 11 damage and gain 6 Block.",rarity:"Uncommon",effect:()=>{damage(11);if(state.combat)block(6)}},
  {name:"Recovery",type:"skill",cost:1,desc:"Gain 10 Block and draw 1.",rarity:"Uncommon",effect:()=>{block(10);drawCard()}},
  {name:"Inferno",type:"attack",cost:2,desc:"Deal 25 damage.",rarity:"Rare",effect:()=>damage(25)},
@@ -213,12 +213,12 @@ const extraCards=[
  {name:"Meteoric Slash",type:"attack",cost:3,desc:"Deal 38 damage.",rarity:"Epic",effect:()=>damage(38)},
  {name:"Colossus Guard",type:"block",cost:3,desc:"Gain 50 Block.",rarity:"Epic",effect:()=>block(50)},
  {name:"Overwhelming Force",type:"attack",cost:2,desc:"Deal 35 damage.",rarity:"Epic",effect:()=>damage(35)},
- {name:"War Machine",type:"skill",cost:2,desc:"Gain 4 temporary Energy and draw 1.",rarity:"Epic",effect:()=>{state.tempEnergy+=4;drawCard()}},
+ {name:"War Machine",type:"skill",cost:2,desc:"Gain 3 Energy and draw 1.",rarity:"Epic",effect:()=>{state.energy+=4;state.tempEnergy+=4;drawCard()}},
  {name:"Void Lance",type:"attack",cost:2,desc:"Deal 42 damage.",rarity:"Epic",effect:()=>damage(42)},
  {name:"Guardian Angel",type:"skill",cost:2,desc:"Gain 32 Block and draw 2.",rarity:"Epic",effect:()=>{block(32);drawCard();drawCard()}},
  {name:"Cataclysm",type:"attack",cost:3,desc:"Deal 55 damage.",rarity:"Legendary",effect:()=>damage(55)},
  {name:"Immortal Aegis",type:"block",cost:3,desc:"Gain 65 Block.",rarity:"Legendary",effect:()=>block(65)},
- {name:"Chrono Blade",type:"skill",cost:1,desc:"Gain 4 temporary Energy and draw 3 cards.",rarity:"Legendary",effect:()=>{state.tempEnergy+=4;drawCard();drawCard();drawCard()}},
+ {name:"Chrono Blade",type:"skill",cost:1,desc:"Gain 3 Energy and draw 3 cards.",rarity:"Legendary",effect:()=>{state.energy+=4;state.tempEnergy+=4;drawCard();drawCard();drawCard()}},
  {name:"Starfall",type:"attack",cost:3,desc:"Deal 70 damage.",rarity:"Legendary",effect:()=>damage(70)},
  {name:"World Breaker",type:"attack",cost:4,desc:"Deal 90 damage.",rarity:"Legendary",effect:()=>damage(90)}
 ];
@@ -231,7 +231,7 @@ const classCards={
   {name:"Heavy Guard",type:"block",cost:2,desc:"Gain 18 Block.",rarity:"Common",effect:()=>block(18)},
   {name:"Shield Bash",type:"attack",cost:2,desc:"Deal 7 damage plus half your Block (rounded down).",rarity:"Common",effect:()=>damage(7+Math.floor(state.block/2))},
   {name:"Hold the Line",type:"skill",cost:1,desc:"Gain 6 Block and draw 1.",rarity:"Common",effect:()=>{block(6);drawCard()}},
-  {name:"Fortified Stance",type:"block",cost:1,desc:"Gain 8 Block and 1 temporary Energy.",rarity:"Common",effect:()=>{block(8);state.tempEnergy++}},
+  {name:"Fortified Stance",type:"block",cost:1,desc:"Gain 8 Block and 1 temporary Energy.",rarity:"Common",effect:()=>{block(8);state.energy++;state.tempEnergy++}},
   {name:"Hammer Tap",type:"attack",cost:1,desc:"Deal 10 damage.",rarity:"Common",effect:()=>damage(10)},
   {name:"Guard Breaker",type:"attack",cost:2,desc:"Deal 17 damage.",rarity:"Uncommon",effect:()=>damage(17)},
   {name:"Iron Fortress",type:"block",cost:2,desc:"Gain 23 Block.",rarity:"Uncommon",effect:()=>block(23)},
@@ -245,7 +245,7 @@ const classCards={
   {name:"Last Stand",type:"skill",cost:1,desc:"Gain 18 Block and draw 2.",rarity:"Rare",effect:()=>{block(18);drawCard();drawCard()}},
   {name:"Crushing Shield",type:"attack",cost:2,desc:"Deal 20 damage and gain 10 Block.",rarity:"Epic",effect:()=>{damage(20);if(state.combat)block(10)}},
   {name:"Colossus",type:"block",cost:3,desc:"Gain 45 Block.",rarity:"Epic",effect:()=>block(45)},
-  {name:"Unbreakable",type:"skill",cost:3,desc:"Gain 28 Block, draw 2, and gain 2 temporary Energy.",rarity:"Legendary",effect:()=>{block(28);drawCard();drawCard();state.tempEnergy+=2}}
+  {name:"Unbreakable",type:"skill",cost:3,desc:"Gain 28 Block, draw 2, and gain 2 temporary Energy.",rarity:"Legendary",effect:()=>{block(28);drawCard();drawCard();state.energy+=2;state.tempEnergy+=2}}
  ],
  rogue:[
   {name:"Backstab",type:"attack",cost:0,desc:"Deal 5 damage.",rarity:"Common",effect:()=>damage(5)},
@@ -262,7 +262,7 @@ const classCards={
   {name:"Ambush",type:"attack",cost:2,desc:"Deal 26 damage.",rarity:"Uncommon",effect:()=>damage(26)},
   {name:"Shadow Dance",type:"skill",cost:1,desc:"Draw 3 cards.",rarity:"Rare",effect:()=>{drawCard();drawCard();drawCard()}},
   {name:"Deadly Precision",type:"attack",cost:1,desc:"Deal 20 damage.",rarity:"Rare",effect:()=>damage(20)},
-  {name:"Ghost Step",type:"skill",cost:1,desc:"Gain 14 Block and 1 temporary Energy.",rarity:"Rare",effect:()=>{block(14);state.tempEnergy++}},
+  {name:"Ghost Step",type:"skill",cost:1,desc:"Gain 14 Block and 1 temporary Energy.",rarity:"Rare",effect:()=>{block(14);state.energy++;state.tempEnergy++}},
   {name:"Fan of Blades",type:"attack",cost:2,desc:"Deal 10 damage three times.",rarity:"Rare",effect:()=>{damage(10);if(state.combat)damage(10);if(state.combat)damage(10)}},
   {name:"Executioner's Knife",type:"attack",cost:2,desc:"Deal 36 damage.",rarity:"Epic",effect:()=>damage(36)},
   {name:"Phantom Barrage",type:"attack",cost:2,desc:"Deal 15 damage three times.",rarity:"Epic",effect:()=>{damage(15);if(state.combat)damage(15);if(state.combat)damage(15)}},
@@ -279,7 +279,7 @@ const classCards={
   {name:"Arcane Insight",type:"skill",cost:1,desc:"Draw 2 cards.",rarity:"Common",effect:()=>{drawCard();drawCard()}},
   {name:"Fireball",type:"attack",cost:2,desc:"Deal 22 damage.",rarity:"Uncommon",effect:()=>damage(22)},
   {name:"Ice Barrier",type:"block",cost:2,desc:"Gain 22 Block.",rarity:"Uncommon",effect:()=>block(22)},
-  {name:"Mana Surge",type:"skill",cost:1,desc:"Gain 2 temporary Energy.",rarity:"Uncommon",effect:()=>{state.tempEnergy+=2}},
+  {name:"Mana Surge",type:"skill",cost:1,desc:"Gain 2 temporary Energy.",rarity:"Uncommon",effect:()=>{state.energy+=2;state.tempEnergy+=2}},
   {name:"Lightning Arc",type:"attack",cost:1,desc:"Deal 8 damage twice.",rarity:"Uncommon",effect:()=>{damage(8);if(state.combat)damage(8)}},
   {name:"Rune Ward",type:"block",cost:1,desc:"Gain 14 Block and draw 1.",rarity:"Uncommon",effect:()=>{block(14);drawCard()}},
   {name:"Spell Echo",type:"skill",cost:2,desc:"Draw 3 cards and gain 1 Energy.",rarity:"Uncommon",effect:()=>{drawCard();drawCard();drawCard();state.energy=Math.min(state.maxEnergy,state.energy+1)}},
@@ -288,7 +288,7 @@ const classCards={
   {name:"Mana Well",type:"skill",cost:1,desc:"Gain 1 Energy.",rarity:"Rare",effect:()=>{state.energy=Math.min(state.maxEnergy,state.energy+1)}},
   {name:"Chain Lightning",type:"attack",cost:2,desc:"Deal 16 damage twice.",rarity:"Rare",effect:()=>{damage(16);if(state.combat)damage(16)}},
   {name:"Meteor Storm",type:"attack",cost:3,desc:"Deal 48 damage.",rarity:"Epic",effect:()=>damage(48)},
-  {name:"Time Weaver",type:"skill",cost:2,desc:"Gain 2 temporary Energy and draw 2.",rarity:"Epic",effect:()=>{state.tempEnergy+=2;drawCard();drawCard()}},
+  {name:"Time Weaver",type:"skill",cost:2,desc:"Gain 2 temporary Energy and draw 2.",rarity:"Epic",effect:()=>{state.energy+=2;state.tempEnergy+=2;drawCard();drawCard()}},
   {name:"Arcane Apocalypse",type:"attack",cost:3,desc:"Deal 75 damage.",rarity:"Legendary",effect:()=>damage(75)}
  ]
 };
@@ -564,8 +564,8 @@ function movePlayer(dx,dy){
   if(hasRelic("startblock12"))state.block+=12;
   if(hasRelic("dragon"))state.block+=6;
   if(hasRelic("turnblock3"))state.block+=3;
-  if(hasRelic("battle standard")||hasRelic("Battle Standard")){state.tempEnergy+=2}
-  if(hasRelic("worldstone")){state.tempEnergy+=2}
+  if(hasRelic("battle standard")||hasRelic("Battle Standard")){state.energy+=2;state.tempEnergy+=2}
+  if(hasRelic("worldstone")){state.energy+=2;state.tempEnergy+=2}
   render();
   log(`You encountered ${state.enemy.name}! ${ex.monsters.length} monster${ex.monsters.length===1?"":"s"} remain. You cannot progress until every enemy in this room is defeated.`);
   return;
@@ -613,25 +613,21 @@ function drawCards(n){
 }
 
 function canPlay(card){
- return state.combat && state.playerTurn && (state.energy+state.tempEnergy)>=card.cost;
+ return state.combat && state.playerTurn && state.energy>=card.cost;
 }
 
 function useCard(index){
  const card=state.hand[index];
  if(!canPlay(card))return;
 
- let remainingCost=card.cost;
- const tempSpent=Math.min(state.tempEnergy,remainingCost);
- state.tempEnergy-=tempSpent;
- remainingCost-=tempSpent;
- state.energy-=remainingCost;
+ state.energy-=card.cost;
  state.hand.splice(index,1);
  card.effect();
  state.discard.push(card);
 
  if(!state.combat)return;
 
- if((state.energy+state.tempEnergy)===0 || !state.hand.some(c=>c.cost<=(state.energy+state.tempEnergy))){
+ if(state.energy===0 || !state.hand.some(c=>c.cost<=state.energy)){
   endPlayerTurn();
  }else{
   render();
@@ -731,14 +727,14 @@ function cardCopy(card){
 }
 
 function showCardChoice(title, cards, callback){
- modal(title,"Choose one card.",cards.map(card=>[
+ modal(title,"Hover over a card to see what it does.",cards.map(card=>[
   `${card.name} — ${card.rarity} — ${card.cost}⚡`,
   ()=>{
    callback(card);
    closeModal();
    finishCombatRoom();
   },
-  `${card.desc} Type: ${card.type}. Cost: ${card.cost} Energy.`
+  `${card.name} — ${card.rarity} — ${card.cost} Energy\n${card.desc}`
  ]));
 }
 
@@ -960,9 +956,8 @@ function modal(title,text,buttons){
   btn.style.borderColor=label.includes("Legendary")?"#ffd34d":label.includes("Epic")?"#ff8a45":label.includes("Rare")?"#b46cff":label.includes("Uncommon")?"#62a9e8":"#506b5a";
   if(tip){
    btn.title=tip;
-   btn.dataset.tooltip=tip;
    btn.setAttribute("aria-label",`${label}. ${tip}`);
-   btn.classList.add("shopHoverItem","choiceCardButton");
+   btn.classList.add("shopHoverItem");
   }
   btn.onclick=fn;
   box.appendChild(btn);
@@ -1014,7 +1009,7 @@ function render(){
  if(energy)energy.textContent=state.energy;
  if(maxEnergy)maxEnergy.textContent=state.maxEnergy;
  const temp=document.getElementById("tempEnergy");
- if(temp)temp.textContent=state.tempEnergy>0 ? ` (+${state.tempEnergy} temporary this turn)` : "";
+ if(temp)temp.textContent=state.tempEnergy>0 ? ` (+${state.tempEnergy} temporary)` : "";
 
  const map=document.getElementById("map");
  map.innerHTML="";
@@ -1099,7 +1094,7 @@ function render(){
   msg.textContent=state.exploring
    ?`Walk around the area and defeat every enemy before progressing. ${state.explore.type==="boss"?"This is the boss room.":`${state.explore.monsters.length} enemies remain.`}`
    :state.combat
-   ?`Energy: ${state.energy}/${state.maxEnergy}${state.tempEnergy ? ` (+${state.tempEnergy} temporary this turn)` : ""} — play cards until you cannot play another.`
+   ?`Energy: ${state.energy}/${state.maxEnergy}${state.tempEnergy ? ` (+${state.tempEnergy} temporary)` : ""} — play cards until you cannot play another.`
    :state.rooms[state.room]?.type==="shop"
    ?"Shop open — spend gold on cards, relics, healing, or deck services, then leave when ready."
    :"Explore the dungeon.";
