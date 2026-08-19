@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="216" height="288" viewBox="0 0 54 72">
+<rect width="54" height="72" fill="none"/>
+<!-- huge feet --> <path fill="#211817" d="M5 65h19v5H3v-3zm27 0h20v5H30v-3z"/>
+<!-- legs --> <path fill="#5f402d" d="M12 45h12l2 21H12zm18 0h12l1 21H30z"/>
+<!-- body --> <path fill="#765037" d="M10 20l8-10h18l9 10 5 26-10 8H14L4 46z"/><path fill="#8a6040" d="M17 20h20l5 27H13z"/>
+<!-- arms --> <path fill="#6b492f" d="M12 23L1 43l7 6 15-17zm30 0l11 20-7 6-15-17z"/>
+<!-- hands --> <path fill="#4d3427" d="M2 42l7 5-5 6-7-5zm44 0l7 5-4 6-7-5z"/>
+<!-- head --> <path fill="#6d492f" d="M16 7l8-7h11l9 8v18l-8 10H23l-9-10z"/><path fill="#8b6140" d="M21 9h15l5 8-5 10H19l-5-10z"/>
+<!-- face --> <rect x="20" y="14" width="5" height="4" fill="#b9d7a0"/><rect x="32" y="14" width="5" height="4" fill="#b9d7a0"/><path fill="#2b211c" d="M23 22h12l-3 6h-6z"/>
+<!-- fur --> <path stroke="#a16d48" stroke-width="2" d="M10 25L4 30M9 31L2 36M45 25l6 5M46 31l7 5M15 43l-5 7M39 43l5 7"/>
+<!-- fallen branch --> <path stroke="#6f4426" stroke-width="4" d="M40 48L51 67"/><path stroke="#9a6337" stroke-width="2" d="M42 52l6 0M45 57l7-2"/>
+</svg>

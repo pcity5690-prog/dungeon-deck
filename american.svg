@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="256" viewBox="0 0 48 64">
+<rect width="48" height="64" fill="none"/>
+<!-- boots --> <path fill="#1b1714" d="M9 57h12v5H7v-3zm18 0h12v5H25v-3z"/>
+<!-- jeans --> <path fill="#243a59" d="M13 39h22l4 18-10 2-4-13-4 13-10-2z"/>
+<!-- plaid shirt --> <path fill="#9b3f36" d="M12 22h24l5 18H7z"/><path stroke="#d8a06a" stroke-width="1.5" d="M12 28h24M10 34h28M18 22v18M27 22v18"/>
+<!-- suspenders --> <path stroke="#2a211c" stroke-width="3" d="M14 22l6 18M34 22l-6 18"/>
+<!-- arms --> <path fill="#b9774f" d="M9 24l-6 15 6 3 8-13zm30 0l6 15-6 3-8-13z"/>
+<!-- head/beard --> <rect x="16" y="9" width="16" height="15" rx="3" fill="#b97851"/><path fill="#5a3929" d="M15 17h18v9H15zM17 8h14l3 6H14z"/>
+<!-- cap --> <path fill="#e0c34f" d="M14 9l4-5h13l5 7-8-2-10 3z"/><path fill="#b63b32" d="M18 4h13v4H17z"/>
+<!-- neck --> <rect x="21" y="21" width="7" height="5" fill="#a96d4b"/>
+<!-- belt --> <rect x="11" y="38" width="26" height="3" fill="#4a3022"/><rect x="22" y="37" width="5" height="5" fill="#d7b35a"/>
+<!-- canteen --> <rect x="38" y="31" width="6" height="10" rx="2" fill="#68734b"/>
+<!-- pixel highlights --> <rect x="18" y="13" width="3" height="2" fill="#191919"/><rect x="27" y="13" width="3" height="2" fill="#191919"/>
+</svg>
