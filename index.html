@@ -13,7 +13,7 @@ button{cursor:pointer;border:2px solid #565a56;background:linear-gradient(#30343
 #game{max-width:1250px;margin:auto;padding:14px;display:grid;grid-template-columns:230px 1fr 240px;gap:12px}
 .panel{background:linear-gradient(145deg,#202324,#121414);border:2px solid #4a4d4a;border-radius:2px;padding:14px;box-shadow:0 7px 0 #050606,0 15px 35px #000b;position:relative}.panel:after{content:"";position:absolute;inset:4px;border:1px solid #292c2b;pointer-events:none}
 .title{font-size:27px;font-weight:1000;letter-spacing:3px;text-align:center;margin:4px 0 16px;color:#e8e5d5;text-shadow:3px 3px #070808}.stat{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #343736}.hpbar{height:13px;background:#251111;border:2px solid #0b0c0c;overflow:hidden;margin:7px 0 14px}.hpfill{height:100%;background:linear-gradient(#df675d,#9f2f2b);box-shadow:inset 0 1px #ffaaa2}.xpbar{height:10px;background:#121b23;border:2px solid #0b0c0c;overflow:hidden}.xpfill{height:100%;background:linear-gradient(#78bce7,#397aa6)}
-.map{display:grid;grid-template-columns:repeat(13,minmax(0,1fr));gap:4px;margin-top:12px;overflow:hidden}.room{height:45px;border:2px solid #363a38;background:#171a19;display:flex;align-items:center;justify-content:center;font-size:18px;image-rendering:pixelated}.room.current{border-color:#d7b35a;background:#2a261a}.room.done{background:#17251b}.room.locked{opacity:.78;border-style:dashed}.room.future{box-shadow:inset 0 0 0 1px #3a3d3b}.pathArrow{color:#777c77;font-weight:900;font-size:12px;display:flex;align-items:center;justify-content:center}.shopBadge{color:#d7b35a;font-size:11px;margin-left:5px} .shopGold{display:inline-block;margin:8px 0;padding:8px 14px;border:1px solid #8d7438;border-radius:6px;background:#292315;color:#ffd34d;font-weight:900}.shopHoverItem{cursor:help}
+.map{display:grid;grid-template-columns:repeat(13,minmax(0,1fr));gap:4px;margin-top:12px;overflow:hidden}.room{height:45px;border:2px solid #363a38;background:#171a19;display:flex;align-items:center;justify-content:center;font-size:18px;image-rendering:pixelated}.room.current{border-color:#d7b35a;background:#2a261a}.room.done{background:#17251b}.room.locked{opacity:.78;border-style:dashed}.room.future{box-shadow:inset 0 0 0 1px #3a3d3b}.pathArrow{color:#777c77;font-weight:900;font-size:12px;display:flex;align-items:center;justify-content:center}.shopBadge{color:#d7b35a;font-size:11px;margin-left:5px} .shopGold{display:inline-block;margin:8px 0;padding:8px 14px;border:1px solid #8d7438;border-radius:6px;background:#292315;color:#ffd34d;font-weight:900}.shopHoverItem{cursor:help}.gameTooltip{position:fixed;z-index:99999;display:none;max-width:320px;padding:10px 12px;background:#0b0e10;color:#f1f3f2;border:1px solid #8b948f;border-radius:6px;box-shadow:0 6px 18px #000;line-height:1.4;font-size:13px;pointer-events:none;white-space:pre-line}.hasGameTooltip{cursor:help}
 .header{display:flex;justify-content:space-between;align-items:center}.enemy{display:flex;gap:18px;align-items:center;background:linear-gradient(145deg,#202323,#111313);border:2px solid #4a4d4a;padding:14px;margin:12px 0;box-shadow:inset 0 0 0 1px #282b29,0 3px 0 #080909}.enemyIcon{width:88px;height:88px;display:flex;align-items:center;justify-content:center;image-rendering:pixelated}.enemyName{font-size:23px;font-weight:900;color:#eee;text-shadow:2px 2px #080909}
 .cards{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin:18px 0}.card{width:105px;min-height:140px;background:linear-gradient(#343737,#202323);color:#e9e8df;border:2px solid #666a66;border-radius:2px;padding:10px;position:relative;text-align:left;box-shadow:3px 4px 0 #080909, inset 0 1px #777}.card .cost{position:absolute;right:6px;top:5px;background:#315c78;color:#fff;border:2px solid #7196ae;border-radius:2px;width:27px;height:27px;text-align:center;padding-top:2px;font-weight:900}.card .name{font-weight:1000;margin-top:22px}.card .desc{font-size:12px;margin-top:10px;color:#c9c9c1}.card.attack{background:linear-gradient(#49302d,#28201f);border-color:#8b514b}.card.block{background:linear-gradient(#2e4147,#202c30);border-color:#557b87}.card.skill{background:linear-gradient(#3c3349,#28232f);border-color:#76618e}.card:hover{transform:translateY(-5px)}
 .controls{text-align:center}.controls button{margin:4px}.attackBtn{background:linear-gradient(#79352f,#4d201d);border-color:#a95a52;min-width:130px}.log{height:120px;overflow:auto;background:#0a0b0b;border:2px solid #363938;padding:9px;font-size:13px;color:#aaaFA9}
@@ -395,8 +395,28 @@ function hasRelic(effect){
  return state.relics.some(r=>r && typeof r==="object" && r.effect===effect);
 }
 
+function escapeHtml(text){
+ return String(text).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+}
+function setupTooltips(){
+ let tip=document.getElementById("gameTooltip");
+ if(!tip){ tip=document.createElement("div"); tip.id="gameTooltip"; tip.className="gameTooltip"; document.body.appendChild(tip); }
+ document.querySelectorAll(".hasGameTooltip").forEach(el=>{
+  if(el.dataset.tooltipBound)return;
+  el.dataset.tooltipBound="1";
+  el.addEventListener("mouseenter",()=>{ tip.textContent=el.dataset.tooltip||""; tip.style.display="block"; });
+  el.addEventListener("mousemove",e=>{
+   const pad=14, rect=tip.getBoundingClientRect();
+   let x=e.clientX+16, y=e.clientY+16;
+   if(x+rect.width>window.innerWidth-pad)x=e.clientX-rect.width-16;
+   if(y+rect.height>window.innerHeight-pad)y=e.clientY-rect.height-16;
+   tip.style.left=Math.max(pad,x)+"px"; tip.style.top=Math.max(pad,y)+"px";
+  });
+  el.addEventListener("mouseleave",()=>{ tip.style.display="none"; });
+ });
+}
 function relicText(r){
- return `<div class="item" style="border-color:${rarityColor(r.rarity)}"><b style="color:${rarityColor(r.rarity)}">${r.name} — ${r.rarity}</b>${r.desc}</div>`;
+ return `<div class="item hasGameTooltip" data-tooltip="${escapeHtml(`${r.name} — ${r.rarity} Relic\n${r.desc}`)}" style="border-color:${rarityColor(r.rarity)}"><b style="color:${rarityColor(r.rarity)}">${r.name} — ${r.rarity}</b>${r.desc}</div>`;
 }
 
 function grantRelic(relic){
@@ -948,7 +968,7 @@ function openShop(){
    state.gold-=price; grantRelic(relic); state.shop.relicBought[i]=true; render(); openShop();
   },`Relic effect: ${relic.desc}`]);
  });
- if(!state.shop.healBought) buttons.push([`❤️ Heal 25 HP — ${shopPrice(40)}g`,()=>{ const price=shopPrice(40); if(state.gold<price){log("Not enough gold.");return;} state.gold-=price; state.hp=Math.min(state.maxHp,state.hp+25); state.shop.healBought=true; log("The shopkeeper patches you up."); render(); openShop(); }]);
+ if(!state.shop.healBought) buttons.push([`❤️ Heal 25 HP — ${shopPrice(40)}g`,()=>{ const price=shopPrice(40); if(state.gold<price){log("Not enough gold.");return;} state.gold-=price; state.hp=Math.min(state.maxHp,state.hp+25); state.shop.healBought=true; log("The shopkeeper patches you up."); render(); openShop(); },"Restore 25 HP (up to your maximum HP)."]);
  if(!state.shop.removeBought && state.deck.length>1) buttons.push([`🗑 Remove a card — ${shopPrice(90)}g`,()=>{
   const price=shopPrice(90);
   if(state.gold<price){log("Not enough gold.");return;}
@@ -956,9 +976,9 @@ function openShop(){
    const idx=state.deck.indexOf(card);
    if(idx>=0){state.deck.splice(idx,1);state.gold-=price;state.shop.removeBought=true;log(`Removed ${card.name} from your deck for ${price} gold.`);}
    closeModal();openShop();
-  }]));
+  },`${card.name} — ${card.rarity} — ${card.cost} Energy\n${card.desc}`]));
  }]);
- if(!state.shop.rerolled) buttons.push([`🔄 Reroll stock — ${shopPrice(35)}g`,()=>{ const price=shopPrice(35); if(state.gold<price){log("Not enough gold.");return;} state.gold-=price; buildShop(); state.shop.rerolled=true; log("The shopkeeper refreshes the stock."); render(); openShop(); }]);
+ if(!state.shop.rerolled) buttons.push([`🔄 Reroll stock — ${shopPrice(35)}g`,()=>{ const price=shopPrice(35); if(state.gold<price){log("Not enough gold.");return;} state.gold-=price; buildShop(); state.shop.rerolled=true; log("The shopkeeper refreshes the stock."); render(); openShop(); },"Refresh the shop's available cards and relics."]);
  buttons.push(["Leave Shop",()=>{ state.rooms[state.room].done=true; state.shop=null; closeModal(); nextRoom(); }]);
  modal("🛒 Dungeon Shop",`💰 Gold: ${state.gold} — Spend your gold wisely. Dungeon ${state.floor} prices increase as the run goes deeper. Hover over a card or relic to see its effect.`,buttons);
  render();
@@ -1031,12 +1051,14 @@ function modal(title,text,buttons){
   if(tip){
    btn.title=tip;
    btn.setAttribute("aria-label",`${label}. ${tip}`);
-   btn.classList.add("shopHoverItem");
+   btn.classList.add("shopHoverItem","hasGameTooltip");
+   btn.dataset.tooltip=tip;
   }
   btn.onclick=fn;
   box.appendChild(btn);
  });
  document.getElementById("overlay").style.display="flex";
+ setupTooltips();
 }
 
 async function toggleGameFullscreen(){
@@ -1147,6 +1169,9 @@ function render(){
   btn.className="card "+card.type;
   btn.disabled=!canPlay(card);
   btn.onclick=()=>useCard(i);
+  btn.dataset.tooltip=`${card.name} — ${card.rarity} — ${card.cost} Energy\n${card.desc}`;
+  btn.setAttribute("aria-label",btn.dataset.tooltip);
+  btn.classList.add("hasGameTooltip");
   btn.innerHTML=`<span class="cost">${card.cost}</span><div class="name">${card.name}</div><div class="desc">${card.desc}</div>`;
   cards.appendChild(btn);
  });
@@ -1158,7 +1183,8 @@ function render(){
   `Draw pile: ${state.draw.length}<br>Hand: ${state.hand.length}<br>Discard: ${state.discard.length}<br><br>Block: <b>${state.block}</b>`;
 
  document.getElementById("relics").innerHTML=
-  state.relics.map(r=>typeof r==="string"?`<div class="item"><b>${r}</b>Starting relic</div>`:relicText(r)).join("");
+  state.relics.map(r=>typeof r==="string"?`<div class="item hasGameTooltip" data-tooltip="${escapeHtml(`${r}\nStarting relic`)}"><b>${r}</b>Starting relic</div>`:relicText(r)).join("");
+ setupTooltips();
 
  document.getElementById("reward").innerHTML=
   state.combat?"Play cards using your energy.":"Choose your reward.";
