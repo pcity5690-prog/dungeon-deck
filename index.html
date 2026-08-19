@@ -92,6 +92,30 @@ button{cursor:pointer;border:2px solid #565a56;background:linear-gradient(#30343
     <div class="classRelic"><b>Mana Crystal — Uncommon</b>Gain +1 maximum Energy.</div>
     <div class="classChoose">Choose Arcanist</div>
    </button>
+   <button class="classCard" onclick="selectClass('american')">
+    <div class="classSprite"><span class="classGlyph" style="font-size:64px">🇺🇸</span></div>
+    <div class="className">American Survivor</div>
+    <div class="classRole">The Field Survivor</div>
+    <div class="classDesc">A prepared survivor focused on supplies, recovery, mobility, and steady attacks.</div>
+    <div class="classRelic"><b>Lucky Coin — Common</b>Gain 10 extra gold.</div>
+    <div class="classChoose">Choose American Survivor</div>
+   </button>
+   <button class="classCard" onclick="selectClass('canadian')">
+    <div class="classSprite"><span class="classGlyph" style="font-size:64px">🇨🇦</span></div>
+    <div class="className">Canadian Survivor</div>
+    <div class="classRole">The Rink Veteran</div>
+    <div class="classDesc">A hockey-themed survivor who mixes quick plays, strong defense, and maple-powered recovery.</div>
+    <div class="classRelic"><b>Warm Cloak — Common</b>Resting restores 16 HP.</div>
+    <div class="classChoose">Choose Canadian Survivor</div>
+   </button>
+   <button class="classCard" onclick="selectClass('bigfoot')">
+    <div class="classSprite"><span class="classGlyph" style="font-size:64px">🦶🌲</span></div>
+    <div class="className">Bigfoot</div>
+    <div class="classRole">The Wild Wanderer</div>
+    <div class="classDesc">A powerful forest survivor who fights with crushing melee attacks and draws strength from nature.</div>
+    <div class="classRelic"><b>Stone Shard — Common</b>Gain 3 Block at the start of each turn.</div>
+    <div class="classChoose">Choose Bigfoot</div>
+   </button>
   </div>
  </div>
 </div>
@@ -290,6 +314,72 @@ const classCards={
   {name:"Meteor Storm",type:"attack",cost:3,desc:"Deal 48 damage.",rarity:"Epic",effect:()=>damage(48)},
   {name:"Time Weaver",type:"skill",cost:2,desc:"Gain 2 temporary Energy and draw 2.",rarity:"Epic",effect:()=>{state.tempEnergy+=2;drawCard();drawCard()}},
   {name:"Arcane Apocalypse",type:"attack",cost:3,desc:"Deal 75 damage.",rarity:"Legendary",effect:()=>damage(75)}
+ ],
+ american:[
+  {name:"Trail Sense",type:"skill",cost:0,desc:"Draw 1 card.",rarity:"Common",effect:()=>drawCard()},
+  {name:"Supply Check",type:"skill",cost:1,desc:"Gain 6 Block and draw 1.",rarity:"Common",effect:()=>{block(6);drawCard()}},
+  {name:"Ration Pack",type:"skill",cost:1,desc:"Heal 4 HP.",rarity:"Common",effect:()=>{state.hp=Math.min(state.maxHp,state.hp+4)}},
+  {name:"Quick Response",type:"attack",cost:1,desc:"Deal 9 damage.",rarity:"Common",effect:()=>damage(9)},
+  {name:"Field Training",type:"attack",cost:1,desc:"Deal 11 damage.",rarity:"Common",effect:()=>damage(11)},
+  {name:"Trail Guard",type:"block",cost:1,desc:"Gain 10 Block.",rarity:"Common",effect:()=>block(10)},
+  {name:"Emergency Signal",type:"skill",cost:0,desc:"Draw 2 cards.",rarity:"Uncommon",effect:()=>{drawCard();drawCard()}},
+  {name:"Supply Line",type:"skill",cost:1,desc:"Gain 2 temporary Energy.",rarity:"Uncommon",effect:()=>{state.tempEnergy+=2}},
+  {name:"Rescue Push",type:"attack",cost:2,desc:"Deal 18 damage and gain 5 Block.",rarity:"Uncommon",effect:()=>{damage(18);if(state.combat)block(5)}},
+  {name:"Camp Setup",type:"block",cost:2,desc:"Gain 20 Block.",rarity:"Uncommon",effect:()=>block(20)},
+  {name:"Field Medic",type:"skill",cost:1,desc:"Heal 6 HP and draw 1.",rarity:"Uncommon",effect:()=>{state.hp=Math.min(state.maxHp,state.hp+6);drawCard()}},
+  {name:"Rapid Route",type:"attack",cost:1,desc:"Deal 15 damage.",rarity:"Uncommon",effect:()=>damage(15)},
+  {name:"Prepared Mind",type:"skill",cost:1,desc:"Gain 1 Energy and draw 1.",rarity:"Rare",effect:()=>{state.energy=Math.min(state.maxEnergy,state.energy+1);drawCard()}},
+  {name:"Resupply",type:"skill",cost:1,desc:"Gain 3 temporary Energy.",rarity:"Rare",effect:()=>{state.tempEnergy+=3}},
+  {name:"Veteran's Guard",type:"block",cost:2,desc:"Gain 30 Block.",rarity:"Rare",effect:()=>block(30)},
+  {name:"Determined Advance",type:"attack",cost:2,desc:"Deal 27 damage.",rarity:"Rare",effect:()=>damage(27)},
+  {name:"Last Rations",type:"skill",cost:2,desc:"Heal 10 HP and gain 8 Block.",rarity:"Epic",effect:()=>{state.hp=Math.min(state.maxHp,state.hp+10);block(8)}},
+  {name:"All Terrain",type:"skill",cost:1,desc:"Draw 3 cards.",rarity:"Epic",effect:()=>{drawCard();drawCard();drawCard()}},
+  {name:"Survivor's Resolve",type:"block",cost:3,desc:"Gain 45 Block.",rarity:"Epic",effect:()=>block(45)},
+  {name:"American Grit",type:"attack",cost:3,desc:"Deal 60 damage.",rarity:"Legendary",effect:()=>damage(60)}
+ ],
+ canadian:[
+  {name:"Faceoff",type:"attack",cost:0,desc:"Deal 4 damage.",rarity:"Common",effect:()=>damage(4)},
+  {name:"Power Play",type:"attack",cost:1,desc:"Deal 10 damage.",rarity:"Common",effect:()=>damage(10)},
+  {name:"Maple Snack",type:"skill",cost:1,desc:"Heal 4 HP.",rarity:"Common",effect:()=>{state.hp=Math.min(state.maxHp,state.hp+4)}},
+  {name:"Blue Line",type:"block",cost:1,desc:"Gain 9 Block.",rarity:"Common",effect:()=>block(9)},
+  {name:"Penalty Kill",type:"block",cost:1,desc:"Gain 12 Block.",rarity:"Common",effect:()=>block(12)},
+  {name:"Hat Trick",type:"attack",cost:2,desc:"Deal 7 damage three times.",rarity:"Common",effect:()=>{damage(7);if(state.combat)damage(7);if(state.combat)damage(7)}},
+  {name:"Maple Rush",type:"skill",cost:0,desc:"Gain 1 temporary Energy.",rarity:"Uncommon",effect:()=>{state.tempEnergy+=1}},
+  {name:"Slapshot",type:"attack",cost:2,desc:"Deal 19 damage.",rarity:"Uncommon",effect:()=>damage(19)},
+  {name:"Crease Guard",type:"block",cost:2,desc:"Gain 18 Block and draw 1.",rarity:"Uncommon",effect:()=>{block(18);drawCard()}},
+  {name:"Overtime",type:"skill",cost:1,desc:"Draw 2 cards.",rarity:"Uncommon",effect:()=>{drawCard();drawCard()}},
+  {name:"Maple Shield",type:"block",cost:2,desc:"Gain 24 Block.",rarity:"Uncommon",effect:()=>block(24)},
+  {name:"Breakaway",type:"attack",cost:1,desc:"Deal 16 damage.",rarity:"Uncommon",effect:()=>damage(16)},
+  {name:"Home Ice",type:"skill",cost:1,desc:"Gain 2 temporary Energy and 5 Block.",rarity:"Rare",effect:()=>{state.tempEnergy+=2;block(5)}},
+  {name:"Top Shelf",type:"attack",cost:2,desc:"Deal 28 damage.",rarity:"Rare",effect:()=>damage(28)},
+  {name:"Maple Reserve",type:"skill",cost:1,desc:"Heal 7 HP and draw 1.",rarity:"Rare",effect:()=>{state.hp=Math.min(state.maxHp,state.hp+7);drawCard()}},
+  {name:"Penalty Box",type:"block",cost:1,desc:"Gain 20 Block.",rarity:"Rare",effect:()=>block(20)},
+  {name:"Full Line",type:"skill",cost:2,desc:"Draw 3 cards and gain 1 temporary Energy.",rarity:"Epic",effect:()=>{drawCard();drawCard();drawCard();state.tempEnergy+=1}},
+  {name:"Playoff Push",type:"attack",cost:2,desc:"Deal 38 damage.",rarity:"Epic",effect:()=>damage(38)},
+  {name:"Maple Fortress",type:"block",cost:3,desc:"Gain 55 Block.",rarity:"Epic",effect:()=>block(55)},
+  {name:"Golden Goal",type:"attack",cost:3,desc:"Deal 65 damage.",rarity:"Legendary",effect:()=>damage(65)}
+ ],
+ bigfoot:[
+  {name:"Heavy Swing",type:"attack",cost:1,desc:"Deal 9 damage.",rarity:"Common",effect:()=>damage(9)},
+  {name:"Stone Fist",type:"attack",cost:1,desc:"Deal 11 damage.",rarity:"Common",effect:()=>damage(11)},
+  {name:"Bark Guard",type:"block",cost:1,desc:"Gain 10 Block.",rarity:"Common",effect:()=>block(10)},
+  {name:"Forest Step",type:"skill",cost:0,desc:"Draw 1 card.",rarity:"Common",effect:()=>drawCard()},
+  {name:"Branch Club",type:"attack",cost:1,desc:"Deal 13 damage.",rarity:"Common",effect:()=>damage(13)},
+  {name:"Mossy Hide",type:"block",cost:1,desc:"Gain 8 Block and heal 2 HP.",rarity:"Common",effect:()=>{block(8);state.hp=Math.min(state.maxHp,state.hp+2)}},
+  {name:"Root Snare",type:"skill",cost:1,desc:"Gain 7 Block and draw 1.",rarity:"Uncommon",effect:()=>{block(7);drawCard()}},
+  {name:"Feral Charge",type:"attack",cost:2,desc:"Deal 20 damage.",rarity:"Uncommon",effect:()=>damage(20)},
+  {name:"Oak Wall",type:"block",cost:2,desc:"Gain 22 Block.",rarity:"Uncommon",effect:()=>block(22)},
+  {name:"Wild Forage",type:"skill",cost:1,desc:"Heal 6 HP and gain 1 temporary Energy.",rarity:"Uncommon",effect:()=>{state.hp=Math.min(state.maxHp,state.hp+6);state.tempEnergy+=1}},
+  {name:"Boulder Toss",type:"attack",cost:2,desc:"Deal 25 damage.",rarity:"Uncommon",effect:()=>damage(25)},
+  {name:"Thick Fur",type:"block",cost:1,desc:"Gain 15 Block.",rarity:"Rare",effect:()=>block(15)},
+  {name:"Bear Maul",type:"attack",cost:2,desc:"Deal 16 damage twice.",rarity:"Rare",effect:()=>{damage(16);if(state.combat)damage(16)}},
+  {name:"River Rush",type:"skill",cost:1,desc:"Gain 2 temporary Energy and draw 1.",rarity:"Rare",effect:()=>{state.tempEnergy+=2;drawCard()}},
+  {name:"Ancient Grove",type:"skill",cost:2,desc:"Heal 10 HP and gain 12 Block.",rarity:"Rare",effect:()=>{state.hp=Math.min(state.maxHp,state.hp+10);block(12)}},
+  {name:"Mountain Smash",type:"attack",cost:3,desc:"Deal 38 damage.",rarity:"Epic",effect:()=>damage(38)},
+  {name:"Living Timber",type:"block",cost:2,desc:"Gain 32 Block.",rarity:"Epic",effect:()=>block(32)},
+  {name:"Primal Fury",type:"attack",cost:2,desc:"Deal 20 damage and gain 8 Block.",rarity:"Epic",effect:()=>{damage(20);if(state.combat)block(8)}},
+  {name:"Spirit of the Forest",type:"skill",cost:2,desc:"Heal 12 HP, draw 2 cards, and gain 1 temporary Energy.",rarity:"Legendary",effect:()=>{state.hp=Math.min(state.maxHp,state.hp+12);drawCard();drawCard();state.tempEnergy+=1}},
+  {name:"Sasquatch Slam",type:"attack",cost:3,desc:"Deal 65 damage.",rarity:"Legendary",effect:()=>damage(65)}
  ]
 };
 
@@ -423,6 +513,7 @@ function grantRelic(relic){
  if(!relic)return;
  state.relics.push(relic);
  if(relic.effect==="maxhp5"||relic.effect==="luckyStone"){state.maxHp+=5;state.hp+=5}
+ if(relic.effect==="gold10"){state.gold+=10;log("Lucky Coin grants 10 extra gold.");}
  if(relic.effect==="maxhp25"){state.maxHp+=25;state.hp+=25}
  if(relic.effect==="dragon"){state.maxHp+=12;state.hp+=12}
  if(relic.effect==="crown"){state.maxHp+=20;state.hp+=20;state.maxEnergy+=2}
@@ -443,7 +534,7 @@ function showRelicChest(){
   </div>
  `,[
   ["Take Relic",()=>{grantRelic(relic);closeModal();resumeExploration();}]
- ]);
+ ], true);
 }
 
 function resumeExploration(){
@@ -475,7 +566,10 @@ function newState(classKey="warden"){
  const classInfo={
   warden:{name:"Warden",relicName:"Knight's Crest"},
   rogue:{name:"Rogue",relicName:"Wolf Fang"},
-  arcanist:{name:"Arcanist",relicName:"Mana Crystal"}
+  arcanist:{name:"Arcanist",relicName:"Mana Crystal"},
+  american:{name:"American Survivor",relicName:"Lucky Coin"},
+  canadian:{name:"Canadian Survivor",relicName:"Warm Cloak"},
+  bigfoot:{name:"Bigfoot",relicName:"Stone Shard"}
  }[classKey]||{name:"Warden",relicName:"Knight's Crest"};
  return {
   floor:1,gold:20,level:1,hp:70,maxHp:70,xp:0,nextXp:20,
@@ -488,9 +582,9 @@ function newState(classKey="warden"){
 function makeRooms(){
  const maps=[
   ["enemy","shop","enemy","treasure","enemy","event","boss"],
-  ["enemy","treasure","elite","shop","enemy","","boss"],
+  ["enemy","treasure","elite","shop","enemy","event","boss"],
   ["enemy","shop","elite","enemy","treasure","enemy","boss"],
-  ["enemy","treasure","enemy","shop","elite","","boss"],
+  ["enemy","treasure","enemy","shop","elite","event","boss"],
   ["elite","shop","enemy","treasure","elite","","boss"]
  ];
  state.rooms=maps[Math.min(state.floor,5)-1].map(type=>({type,done:false}));
@@ -505,7 +599,7 @@ function restart(classKey=state?.classKey||"warden"){
  turnTransitionActive=false;
  lastGameError=null;
  state=newState(classKey);
- const classRelic={warden:"Knight's Crest",rogue:"Wolf Fang",arcanist:"Mana Crystal"}[classKey]||"Knight's Crest";
+ const classRelic={warden:"Knight's Crest",rogue:"Wolf Fang",arcanist:"Mana Crystal",american:"Lucky Coin",canadian:"Warm Cloak",bigfoot:"Stone Shard"}[classKey]||"Knight's Crest";
  const relic=relicPool.find(r=>r.name===classRelic);
  if(relic)grantRelic({...relic});
  makeRooms();
@@ -620,6 +714,7 @@ function movePlayer(dx,dy){
   const type=ex.type;
   ex.monsters.splice(hitIndex,1);
   state.exploring=false;
+  state.phoenixUsed=false;
   spawnEnemy(type);
   state.combat=true;
   drawCards(5+(hasRelic("startdraw1")?1:0)+(hasRelic("battery")?1:0)+(hasRelic("worldstone")?2:0));
@@ -627,9 +722,9 @@ function movePlayer(dx,dy){
   if(hasRelic("startblock8"))state.block+=8;
   if(hasRelic("startblock12"))state.block+=12;
   if(hasRelic("dragon"))state.block+=6;
-  if(hasRelic("turnblock3"))state.block+=3;
   if(hasRelic("tempenergy2")){state.tempEnergy+=2}
   if(hasRelic("worldstone")){state.tempEnergy+=2}
+  if(hasRelic("turnblock3"))state.block+=3;
   render();
   log(`You encountered ${state.enemy.name}! ${ex.monsters.length} monster${ex.monsters.length===1?"":"s"} remain. You cannot progress until every enemy in this room is defeated.`);
   return;
@@ -740,6 +835,7 @@ function endPlayerTurn(){
     state.hand.forEach(c=>state.discard.push(c));
     state.hand=[];
     drawCards(5);
+    if(hasRelic("turnblock3"))state.block+=3;
     state.playerTurn=true;
    }
 
@@ -1038,9 +1134,10 @@ function gameOver(){
  ]);
 }
 
-function modal(title,text,buttons){
+function modal(title,text,buttons,allowHtml=false){
  document.getElementById("modalTitle").textContent=title;
- document.getElementById("modalText").textContent=text;
+ if(allowHtml)document.getElementById("modalText").innerHTML=text;
+ else document.getElementById("modalText").textContent=text;
  const box=document.getElementById("modalButtons");
  box.innerHTML="";
  buttons.forEach(([label,fn,tip])=>{
@@ -1109,7 +1206,7 @@ function render(){
 
  const map=document.getElementById("map");
  map.innerHTML="";
- const dungeonNames=["The Shadowed Depths","","The Cursed Catacombs","The Infernal Fortress","The Final Abyss"];
+ const dungeonNames=["The Shadowed Depths","The Frozen North","The Cursed Catacombs","The Infernal Fortress","The Final Abyss"];
  const dungeonLabel=document.getElementById("dungeonLabel");
  if(dungeonLabel)dungeonLabel.textContent=dungeonNames[state.floor-1];
  state.rooms.forEach((r,i)=>{
